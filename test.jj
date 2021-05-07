@@ -49,6 +49,11 @@ TOKEN :
     <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);}
 }
 
+TOKEN:
+{
+    <Numero: (<dig>)> {System.out.println("Numero -> " + image);}
+}
+
 void Iniciar() :
 {}
 {
