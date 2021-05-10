@@ -44,14 +44,174 @@ TOKEN :
     <Afirmar: "assert"> {System.out.println("Afirmar -> " + image);}
 }
 
-TOKEN :
-{
-    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);}
-}
-
 TOKEN:
 {
     <Numero: (<dig>)> {System.out.println("Numero -> " + image);}
+}
+
+TOKEN: // Tipos de dato
+{
+    <Booleano: "bool"> |
+    <Byte: "byte"> |
+    <Char: "char"> |
+    <Entero: "int"> |
+    <Double: "double"> |
+    <Float: "float"> |
+    <String: "string"> |
+    <Var: "var">
+}
+
+TOKEN: // Asignación
+{
+    <Asig: "=">
+}
+
+TOKEN: // Operadores lógicos
+{
+    <And: "and" | "&&"> |
+    <Or: "||" | "or"> |
+    <Xor: "xor"> |
+    <MenIgual: "<="> |
+    <MayIgual: ">="> |
+    <Igual: "=="> |
+    <Dif: "!=" | "not">
+}
+
+TOKEN: // Ciclos
+{
+    <For: "for"> |
+    <Foreach: "Foreach"> |
+    <While: "While"> |
+    <Do: "do"> |
+    <Until: "until">
+}
+
+TOKEN: // Declaracion de caso
+{
+    <If: "if"> |
+    <ElseIf: "elseif" | "elsif" | "elif"> |
+    <Unless: "unless">
+}
+
+TOKEN: // Declaración de múltiples casos
+{
+    <Switch: "Switch">
+}
+
+TOKEN: // Caso de declaración múltiple
+{
+    <Case: "case">
+}
+
+TOKEN: // En caso de que no se cumpla una condición
+{
+    <Default: "default"> |
+    <Else: "else">
+}
+
+TOKEN: // Comentarios
+{
+    <ComIni: "/*"> |
+    <ComFin: "*/"> |
+    <ComLin: "//">
+}
+
+TOKEN: // Operaciones aritméticas
+{
+    <Sum: "+"> |
+    <Res: "-"> |
+    <Mul: "*"> |
+    <Div: "/"> |
+    <Exp: "**"> |
+    <Mod: "%">
+}
+
+TOKEN: // Contenedor
+{
+    <ParIni: "("> |
+    <ParFin: ")">
+}
+
+TOKEN: // Arreglo
+{
+    <ArrIni: "["> |
+    <ArrFin: "]">
+}
+
+TOKEN: // Contenedor de métodos
+{
+    <CorIni: "{"> |
+    <ConFin: "}">
+}
+
+TOKEN: // Herencia
+{
+    <Herencia: "extends" | "implements">
+}
+
+TOKEN: // Privcidad de variables
+{
+    <Publico: "public"> |
+    <Privado: "private"> |
+    <Protegido: "protected">
+}
+
+TOKEN: // Incremento o decremento de valor
+{
+    <Inc: "++"> |
+    <Dec: "--">
+}
+
+TOKEN: // Comillas
+{
+    <Comis: "\""> |
+    <Comi: "'">
+}
+
+TOKEN: // Valores booleanos
+{
+    <Verdadero: "true"> |
+    <Falso: "false">
+}
+
+TOKEN: // Valor nulo
+{
+    <Nulo: "NULL" | "null" | "nil">
+}
+
+TOKEN: // Separar cadena en arreglo
+{
+    <Split: "split" | "explode">
+}
+
+TOKEN: // Juntar arreglo en cadena
+{
+    <Implode: "implode">
+}
+
+TOKEN: // Funciones trigonométricas
+{
+    <Sin: "Sin"> |
+    <Cos: "Cos"> |
+    <Tan: "Tan">
+}
+
+TOKEN: // Cortar espacios extras de texto
+{
+    <Trim: "Trim"> | 
+    <Ltrim: "LTrim"> |
+    <Rtrim: "RTrim">
+}
+
+TOKEN: // Abrir o cerrar archivo
+{
+    <Abrir: "Open"> |
+    <Cerrar: "Close">
+}
+
+TOKEN :
+{
+    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);}
 }
 
 void Iniciar() :
