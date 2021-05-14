@@ -4,9 +4,6 @@ abs
 abstract
 activate
 alias
-and
-app
-array
 ascatn
 asm
 assert

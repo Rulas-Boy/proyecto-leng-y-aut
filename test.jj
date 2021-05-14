@@ -1,4 +1,7 @@
 PARSER_BEGIN(test)
+import java.io.PrintStream;
+import java.util.ArrayList;
+
 class test
 {
     public static void main(String[] args) throws ParseException
@@ -9,7 +12,7 @@ class test
 
             analizador.Iniciar();
 
-            System.out.println("La cadena fue aceptada correctamente");
+            System.out.println("\nLa cadena fue aceptada correctamente");
         }
         catch(ParseException e)
         {
@@ -48,9 +51,9 @@ TOKEN:
 
     <Default: "default" | "else"> | // En caso de que no se cumpla una condición
     
-    <ComIni: "/*"> | "*/" | "//"> | // Comentarios
+    <ComIni: "/*" | "*/" | "//"> | // Comentarios
     
-    <Operador: "+"> | "-" | "*" | "/" | "**" | "%"> | // Operaciones aritméticas
+    <Operador: "+" | "-" | "*" | "/" | "**" | "%"> | // Operaciones aritméticas
 
     <ParIni: "("> |
     <ParFin: ")"> |
@@ -61,56 +64,81 @@ TOKEN:
     <CorIni: "{"> |
     <ConFin: "}"> |
     
-    <Herencia: "extends" | "implements">
+    <Herencia: "extends" | "implements"> |
     
-    <Privcidad: "public" | <Privado: "private" | "protected"> // Privcidad de variables
+    <Privcidad: "public" | "private" | "protected"> | // Privcidad de variables
     
-    <IncDec: "++" | "--"> // Incremento o decremento de valor
+    <IncDec: "++" | "--"> | // Incremento o decremento de valor
     
-    <Comis: "\"" | "'"> // Comillas
+    <Comis: "\"" | "'"> | // Comillas
     
-    <Booleano: "true" | "false">
+    <Booleano: "true" | "false"> |
     
-    <Nulo: "NULL" | "null" | "nil">
+    <Nulo: "NULL" | "null" | "nil"> |
     
-    <Split: "split" | "explode"> // Separar cadena en arreglo
-    <Implode: "implode"> // Juntar arreglo en cadena
+    <Split: "split" | "explode"> | // Separar cadena en arreglo
+    <Implode: "implode"> | // Juntar arreglo en cadena
     
-    <FunTri: "Sin" | "Cos" | "Tan"> // Funciones trigonométricas
+    <FunTri: "Sin" | "Cos" | "Tan"> | // Funciones trigonométricas
     
-    <Trim: "Trim" | "LTrim" |"RTrim"> // Cortar espacios extras de texto
+    <Trim: "Trim" | "LTrim" |"RTrim"> | // Cortar espacios extras de texto
     
-    <ManArchivo: "Open" | "Close"> // Abrir o cerrar archivo
-    
-    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);}
-    
-    <Numero: (<dig>)> {System.out.println("Numero -> " + image);}
+    <ManArchivo: "Open" | "Close"> | // Abrir o cerrar archivo
+
+    <Try: "try"> |
+    <Catch: "catch"> |
+    <Finally: "finally"> |
     
     <Absoluto: "abs"> {System.out.println("Absoluto -> " + image);} |
     <Abstracto: "abstract"> {System.out.println("Abstracto -> " + image);} |
     <Activar: "activate"> {System.out.println("Activar -> " + image);} |
     <Alias: "alias"> {System.out.println("Alias -> " + image);} |
-    <Y: "and"> {System.out.println("Y -> " + image);} |
-    <Aplicacion: "app"> {System.out.println("Aplicacion -> " + image);} |
-    <Arreglo: "array"> {System.out.println("Arreglo -> " + image);} |
     <Ascendiente: "ascatn"> {System.out.println("Ascendiente -> " + image);} |
     <Ensamblador: "asm"> {System.out.println("Ensamblador -> " + image);} |
-    <Afirmar: "assert"> {System.out.println("Afirmar -> " + image);}
+    <Afirmar: "assert"> {System.out.println("Afirmar -> " + image);} |
+    <Await: "await"> {System.out.println("Token -> Await. Valor del atributo -> " + image);} |
+    <Base: "base"> {System.out.println("Token -> " + image);} |
+    <Call: "call"> {System.out.println("Token -> " + image);} |
+    <Callable: "callable"> {System.out.println("Token -> " + image);} |
+    <Choose: "choose"> {System.out.println("Token -> " + image);} |
+    <Class: "class"> {System.out.println("Token -> " + image);} |
+    <Clear: "clear"> {System.out.println("Token -> " + image);} |
+    <Clone: "clone"> {System.out.println("Token -> " + image);} |
+    <Collection: "collection"> {System.out.println("Token -> " + image);} |
+    <Command: "command"> {System.out.println("Token -> " + image);} |
+    <Compare: "compare"> {System.out.println("Token -> " + image);} |
+    <Constante: "const"> {System.out.println("Token -> " + image);} |
+    <ConstCast: "const_cast"> {System.out.println("Token -> " + image);} |
+    <Continuar: "continue"> {System.out.println("Token -> " + image);} |
+    <Dia: "day"> {System.out.println("Token -> " + image);} |
+    <Debugger: "debugger"> {System.out.println("Token -> " + image);} |
+    <Declare: "declare"> {System.out.println("Token -> " + image);} |
+    <Defined: "defined?"> {System.out.println("Token -> " + image);} |
+    <Del: "del"> {System.out.println("Token -> " + image);} |
+    <Delete: "delete"> {System.out.println("Token -> " + image);} |
+    <Die: "die"> {System.out.println("Token -> " + image);} |
+    <Doevents: "doevents"> {System.out.println("Token -> " + image);} |
+    <Each: "each"> {System.out.println("Token -> " + image);} |
+    <Echo: "echo"> {System.out.println("Token -> " + image);} |
+    <Eof: "eof"> {System.out.println("Token -> " + image);} |
+    <Eqv: "eqv"> {System.out.println("Token -> " + image);} |
+    <Erase: "erase"> {System.out.println("Token -> " + image);} |
+    
+    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);} |
+    
+    <Numero: (<dig>)> {System.out.println("Numero -> " + image);}
 }
 
 void Iniciar() :
 {}
 {
-    (<Identificador>)+
-    <Absoluto> 
-    <Abstracto> 
-    <Activar> 
-    <Alias> 
-    <Y> 
-    <Aplicacion> 
-    <Arreglo> 
-    <Ascendiente> 
-    <Ensamblador> 
-    <Afirmar>
+    (<Identificador> |
+    <Absoluto> |
+    <Abstracto> |
+    <Activar> |
+    <Alias> |
+    <Ascendiente> |
+    <Ensamblador> |
+    <Afirmar>)+
     <EOF>
 }
