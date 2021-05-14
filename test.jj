@@ -24,8 +24,7 @@ class test
 }
 PARSER_END(test)
 
-SKIP :
-{ " " | "\t" | "\n" | "\r" }
+SKIP : { " " | "\t" | "\n" | "\r" }
 
 TOKEN :
 {
@@ -89,50 +88,66 @@ TOKEN:
     <Catch: "catch"> |
     <Finally: "finally"> |
     
-    <Absoluto: "abs"> {System.out.println("Absoluto -> " + image);} |
-    <Abstracto: "abstract"> {System.out.println("Abstracto -> " + image);} |
-    <Activar: "activate"> {System.out.println("Activar -> " + image);} |
-    <Alias: "alias"> {System.out.println("Alias -> " + image);} |
+    <Absoluto: "abs"> {System.out.println("Token: Absoluto. Valor del atributo: " + image);} |
+    <Abstracto: "abstract"> {System.out.println("Token: Abstracto. Valor del atributo: " + image);} |
+    <Activar: "activate"> {System.out.println("Token: Activar. Valor del atributo: " + image);} |
+    <Alias: "alias">  {System.out.println("Token: Alias. Valor del atributo: " + image);} |
     <Ascendiente: "ascatn"> {System.out.println("Ascendiente -> " + image);} |
     <Ensamblador: "asm"> {System.out.println("Ensamblador -> " + image);} |
-    <Afirmar: "assert"> {System.out.println("Afirmar -> " + image);} |
-    <Await: "await"> {System.out.println("Token -> Await. Valor del atributo -> " + image);} |
-    <Base: "base"> {System.out.println("Token -> " + image);} |
-    <Call: "call"> {System.out.println("Token -> " + image);} |
-    <Callable: "callable"> {System.out.println("Token -> " + image);} |
-    <Choose: "choose"> {System.out.println("Token -> " + image);} |
-    <Class: "class"> {System.out.println("Token -> " + image);} |
-    <Clear: "clear"> {System.out.println("Token -> " + image);} |
-    <Clone: "clone"> {System.out.println("Token -> " + image);} |
-    <Collection: "collection"> {System.out.println("Token -> " + image);} |
-    <Command: "command"> {System.out.println("Token -> " + image);} |
-    <Compare: "compare"> {System.out.println("Token -> " + image);} |
-    <Constante: "const"> {System.out.println("Token -> " + image);} |
-    <ConstCast: "const_cast"> {System.out.println("Token -> " + image);} |
-    <Continuar: "continue"> {System.out.println("Token -> " + image);} |
-    <Dia: "day"> {System.out.println("Token -> " + image);} |
-    <Debugger: "debugger"> {System.out.println("Token -> " + image);} |
-    <Declare: "declare"> {System.out.println("Token -> " + image);} |
-    <Defined: "defined?"> {System.out.println("Token -> " + image);} |
-    <Del: "del"> {System.out.println("Token -> " + image);} |
-    <Delete: "delete"> {System.out.println("Token -> " + image);} |
-    <Die: "die"> {System.out.println("Token -> " + image);} |
-    <Doevents: "doevents"> {System.out.println("Token -> " + image);} |
-    <Each: "each"> {System.out.println("Token -> " + image);} |
-    <Echo: "echo"> {System.out.println("Token -> " + image);} |
-    <Eof: "eof"> {System.out.println("Token -> " + image);} |
-    <Eqv: "eqv"> {System.out.println("Token -> " + image);} |
-    <Erase: "erase"> {System.out.println("Token -> " + image);} |
+    <Afirmar: "assert">  {System.out.println("Token: Afirmar. Valor del atributo: " + image);} |
+    <Await: "await"> {System.out.println("Token: Await. Valor del atributo: " + image);} |
+    <Base: "base">  {System.out.println("Token: Base. Valor del atributo: " + image);} |
+    <Call: "call">  {System.out.println("Token: Call. Valor del atributo: " + image);} |
+    <Callable: "callable">  {System.out.println("Token: Callable. Valor del atributo: " + image);} |
+    <Choose: "choose">  {System.out.println("Token: Choose. Valor del atributo: " + image);} |
+    <Class: "class">  {System.out.println("Token: Class. Valor del atributo: " + image);} |
+    <Clear: "clear">  {System.out.println("Token: Clear. Valor del atributo: " + image);} |
+    <Clone: "clone">  {System.out.println("Token: Clone. Valor del atributo: " + image);} |
+    <Collection: "collection">  {System.out.println("Token: Collection. Valor del atributo: " + image);} |
+    <Command: "command">  {System.out.println("Token: Command. Valor del atributo: " + image);} |
+    <Compare: "compare">  {System.out.println("Token: Compare. Valor del atributo: " + image);} |
+    <Constante: "const">  {System.out.println("Token: Constante. Valor del atributo: " + image);} |
+    <ConstCast: "const_cast">  {System.out.println("Token: ConstCast. Valor del atributo: " + image);} |
+    <Continuar: "continue">  {System.out.println("Token: Continuar. Valor del atributo: " + image);} |
+    <Dia: "day">  {System.out.println("Token: Dia. Valor del atributo: " + image);} |
+    <Debugger: "debugger">  {System.out.println("Token: Debugger. Valor del atributo: " + image);} |
+    <Declare: "declare">  {System.out.println("Token: Declare. Valor del atributo: " + image);} |
+    <Defined: "defined?">  {System.out.println("Token: Defined. Valor del atributo: " + image);} |
+    <Del: "del">  {System.out.println("Token: Del. Valor del atributo: " + image);} |
+    <Delete: "delete">  {System.out.println("Token: Delete. Valor del atributo: " + image);} |
+    <Die: "die">  {System.out.println("Token: Die. Valor del atributo: " + image);} |
+    <Doevents: "doevents">  {System.out.println("Token: Doevents. Valor del atributo: " + image);} |
+    <Each: "each">  {System.out.println("Token: Each. Valor del atributo: " + image);} |
+    <Echo: "echo">  {System.out.println("Token: Echo. Valor del atributo: " + image);} |
+    <Eof: "eof">  {System.out.println("Token: Eof. Valor del atributo: " + image);} |
+    <Eqv: "eqv">  {System.out.println("Token: Eqv. Valor del atributo: " + image);} |
+    <Erase: "erase">  {System.out.println("Token: Erase. Valor del atributo: " + image);} |
     
-    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Identificador -> " + image);} |
+    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
     
-    <Numero: (<dig>)> {System.out.println("Numero -> " + image);}
+    <Numero: (<dig>)> {System.out.println("Token: Numero. Valor del atributo: " + image);}
 }
 
 void Iniciar() :
-{}
 {
-    (<Identificador> |
+    Token t;
+    ArrayList<String> tabla;
+    tabla = new ArrayList<String>();
+}
+{
+    (t = <Identificador> {
+        String palabra = t.image;
+        int i = 0;
+
+        for (; i < tabla.size(); i++)
+            if (palabra.equals(tabla.get(i)))
+                break;
+        
+        if (tabla.size() == i)
+            tabla.add(palabra);
+
+        System.out.println("-> Identificador (" + Integer.toString(i) + ")");
+    } |
     <Absoluto> |
     <Abstracto> |
     <Activar> |
