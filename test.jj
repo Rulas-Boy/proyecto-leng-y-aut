@@ -21,6 +21,11 @@ class test
             System.out.println("Hubo un error y la cadena no fue aceptada.");
         }
     }
+
+    public void Mensaje()
+    {
+        System.out.println("MENSAJE MENSAJE MENSAJE MENSAJE MENSAJE MENSAJE MENSAJE");
+    }
 }
 PARSER_END(test)
 
@@ -40,7 +45,7 @@ TOKEN:
     
     <OperadorLog: "and" | "&&" | "||" | "or" | "xor" | "<=" | ">=" | "==" | "!=" | "not"> |
 
-    <Ciclo: "for" | "foreach" | "while" | "do" | "until"> |
+    <Ciclo: "for" | "foreach" | "while" | "do" | "until"> {System.out.println("PINCHE CICLO ALV");}|
     
     <DecCaso: "if" | "elseif" | "elsif" | "elif" | "unless"> | // Declaracion de caso
     
@@ -106,7 +111,7 @@ TOKEN:
     <Collection: "collection">  {System.out.println("Token: Collection. Valor del atributo: " + image);} |
     <Command: "command">  {System.out.println("Token: Command. Valor del atributo: " + image);} |
     <Compare: "compare">  {System.out.println("Token: Compare. Valor del atributo: " + image);} |
-    <Constante: "const">  {System.out.println("Token: Constante. Valor del atributo: " + image);} |
+    <Inmutable: "const" | "static">  {System.out.println("Token: Constante. Valor del atributo: " + image);} |
     <ConstCast: "const_cast">  {System.out.println("Token: ConstCast. Valor del atributo: " + image);} |
     <Continuar: "continue">  {System.out.println("Token: Continuar. Valor del atributo: " + image);} |
     <Dia: "day">  {System.out.println("Token: Dia. Valor del atributo: " + image);} |
@@ -123,9 +128,9 @@ TOKEN:
     <Eqv: "eqv">  {System.out.println("Token: Eqv. Valor del atributo: " + image);} |
     <Erase: "erase">  {System.out.println("Token: Erase. Valor del atributo: " + image);} |
     
-    <Identificador: <letraunica>((<dig>)* | (<letraunica>)*)*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
+    <Identificador: <letraunica>((<dig>) | (<letraunica>))*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
     
-    <Numero: (<dig>)> {System.out.println("Token: Numero. Valor del atributo: " + image);}
+    <Numero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);}
 }
 
 void Iniciar() :
@@ -154,6 +159,7 @@ void Iniciar() :
     <Alias> |
     <Ascendiente> |
     <Ensamblador> |
+    <Ciclo> |
     <Afirmar>)+
 
     <EOF> {

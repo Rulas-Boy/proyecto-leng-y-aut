@@ -1,9 +1,13 @@
 Variable123
 Otra321
+Contador2
 abs
 abstract
+Otra321
 activate
+foreach
 alias
+OtraCosa5234
 ascatn
 asm
 assert
