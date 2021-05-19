@@ -96,34 +96,34 @@ TOKEN:
     <Absoluto: "abs"> {System.out.println("Token: Absoluto. Valor del atributo: " + image);} |
     <Abstracto: "abstract"> {System.out.println("Token: Abstracto. Valor del atributo: " + image);} |
     <Activar: "activate"> {System.out.println("Token: Activar. Valor del atributo: " + image);} |
-    <Alias: "alias">  {System.out.println("Token: Alias. Valor del atributo: " + image);} |
+    <Alias: "alias"> {System.out.println("Token: Alias. Valor del atributo: " + image);} |
     <Ascendiente: "ascatn"> {System.out.println("Ascendiente -> " + image);} |
     <Ensamblador: "asm"> {System.out.println("Ensamblador -> " + image);} |
-    <Afirmar: "assert">  {System.out.println("Token: Afirmar. Valor del atributo: " + image);} |
+    <Afirmar: "assert"> {System.out.println("Token: Afirmar. Valor del atributo: " + image);} |
     <Await: "await"> {System.out.println("Token: Await. Valor del atributo: " + image);} |
-    <Base: "base">  {System.out.println("Token: Base. Valor del atributo: " + image);} |
-    <Call: "call">  {System.out.println("Token: Call. Valor del atributo: " + image);} |
-    <Callable: "callable">  {System.out.println("Token: Callable. Valor del atributo: " + image);} |
-    <Choose: "choose">  {System.out.println("Token: Choose. Valor del atributo: " + image);} |
-    <Class: "class">  {System.out.println("Token: Class. Valor del atributo: " + image);} |
-    <Clear: "clear">  {System.out.println("Token: Clear. Valor del atributo: " + image);} |
-    <Clone: "clone">  {System.out.println("Token: Clone. Valor del atributo: " + image);} |
-    <Collection: "collection">  {System.out.println("Token: Collection. Valor del atributo: " + image);} |
-    <Command: "command">  {System.out.println("Token: Command. Valor del atributo: " + image);} |
-    <Compare: "compare">  {System.out.println("Token: Compare. Valor del atributo: " + image);} |
-    <Inmutable: "const" | "static">  {System.out.println("Token: Constante. Valor del atributo: " + image);} |
-    <ConstCast: "const_cast">  {System.out.println("Token: ConstCast. Valor del atributo: " + image);} |
-    <Continuar: "continue">  {System.out.println("Token: Continuar. Valor del atributo: " + image);} |
-    <Dia: "day">  {System.out.println("Token: Dia. Valor del atributo: " + image);} |
-    <Debugger: "debugger">  {System.out.println("Token: Debugger. Valor del atributo: " + image);} |
-    <Declare: "declare">  {System.out.println("Token: Declare. Valor del atributo: " + image);} |
-    <Defined: "defined?">  {System.out.println("Token: Defined. Valor del atributo: " + image);} |
-    <Del: "del">  {System.out.println("Token: Del. Valor del atributo: " + image);} |
-    <Delete: "delete">  {System.out.println("Token: Delete. Valor del atributo: " + image);} |
-    <Die: "die">  {System.out.println("Token: Die. Valor del atributo: " + image);} |
-    <Doevents: "doevents">  {System.out.println("Token: Doevents. Valor del atributo: " + image);} |
-    <Each: "each">  {System.out.println("Token: Each. Valor del atributo: " + image);} |
-    <Echo: "echo">  {System.out.println("Token: Echo. Valor del atributo: " + image);} |
+    <Base: "base"> {System.out.println("Token: Base. Valor del atributo: " + image);} |
+    <Call: "call"> {System.out.println("Token: Call. Valor del atributo: " + image);} |
+    <Callable: "callable"> {System.out.println("Token: Callable. Valor del atributo: " + image);} |
+    <Choose: "choose"> {System.out.println("Token: Choose. Valor del atributo: " + image);} |
+    <Class: "class"> {System.out.println("Token: Class. Valor del atributo: " + image);} |
+    <Clear: "clear"> {System.out.println("Token: Clear. Valor del atributo: " + image);} |
+    <Clone: "clone"> {System.out.println("Token: Clone. Valor del atributo: " + image);} |
+    <Collection: "collection"> {System.out.println("Token: Collection. Valor del atributo: " + image);} |
+    <Command: "command"> {System.out.println("Token: Command. Valor del atributo: " + image);} |
+    <Compare: "compare"> {System.out.println("Token: Compare. Valor del atributo: " + image);} |
+    <Inmutable: "const" | "static"> {System.out.println("Token: Constante. Valor del atributo: " + image);} |
+    <ConstCast: "const_cast"> {System.out.println("Token: ConstCast. Valor del atributo: " + image);} |
+    <Continuar: "continue"> {System.out.println("Token: Continuar. Valor del atributo: " + image);} |
+    <Dia: "day"> {System.out.println("Token: Dia. Valor del atributo: " + image);} |
+    <Debugger: "debugger"> {System.out.println("Token: Debugger. Valor del atributo: " + image);} |
+    <Declare: "declare"> {System.out.println("Token: Declare. Valor del atributo: " + image);} |
+    <Defined: "defined?"> {System.out.println("Token: Defined. Valor del atributo: " + image);} |
+    <Del: "del"> {System.out.println("Token: Del. Valor del atributo: " + image);} |
+    <Delete: "delete"> {System.out.println("Token: Delete. Valor del atributo: " + image);} |
+    <Die: "die"> {System.out.println("Token: Die. Valor del atributo: " + image);} |
+    <Doevents: "doevents"> {System.out.println("Token: Doevents. Valor del atributo: " + image);} |
+    <Each: "each"> {System.out.println("Token: Each. Valor del atributo: " + image);} |
+    <Echo: "echo"> {System.out.println("Token: Echo. Valor del atributo: " + image);} |
     <Eof: "eof"> {System.out.println("Token: Eof. Valor del atributo: " + image);} |
     <Eqv: "eqv"> {System.out.println("Token: Eqv. Valor del atributo: " + image);} |
     <Erase: "erase"> {System.out.println("Token: Erase. Valor del atributo: " + image);} |
@@ -132,84 +132,84 @@ TOKEN:
     <Except: "except"> {System.out.println("Token: Except. Valor del atributo: " + image);} |
     <Exec: "exec"> {System.out.println("Token: Exec. Valor del atributo: " + image);} |
     <Exit: "exit"> {System.out.println("Token: Exit. Valor del atributo: " + image);} |
-    <Explicit: "explicit"> |
-    <Export: "export"> |
-    <Extern: "extern"> |
-    <Fileattr: "fileattr"> |
-    <FileCopy: "filecopy"> |
-    <Final: "final"> |
-    <Fix: "fix"> |
-    <Fn: "fn"> |
-    <Format: "format"> |
-    <Freefile: "freefile"> |
-    <FriendInLine: "friendinline"> |
-    <From: "from"> |
-    <Get: "get"> |
-    <Global: "global"> |
-    <Goto: "goto"> |
-    <Import: "import"> |
-    <In: "in"> |
-    <Include_once: "include_once"> |
-    <InstanceOf: "instanceof"> |
-    <InsteadOf: "insteadof"> |
-    <Interface: "interface"> |
-    <Is: "is"> |
-    <Isset: "isset"> |
-    <Lambda: "lambda"> |
-    <Let: "let"> |
-    <List: "list"> |
-    <Match: "match"> |
-    <Module: "module"> |
-    <Mutable: "mutable"> |
-    <NameSpace: "namespace"> |
-    <Native: "native"> |
-    <New: "new"> |
-    <Next: "next"> |
-    <Operator: "operator"> |
-    <Package: "package"> |
-    <Print: "print"> |
-    <Raise: "raise"> |
-    <Redo: "redo"> |
-    <Register: "register"> |
-    <Reinterpret_cast: "reinterpret_cast"> |
-    <Require: "require"> |
-    <Require_Once: "require_once"> |
-    <Rescue: "rescue"> |
-    <Retry: "retry"> |
-    <Return: "return"> |
-    <Seek: "seek"> |
-    <Self: "self"> |
-    <Set: "set"> |
-    <Signed: "signed"> |
-    <SizeOf: "sizeof"> |
-    <Static_Cast: "static_cast"> |
-    <Strictfp: "strictfp"> |
-    <Struct: "struct"> |
-    <Super: "super"> |
-    <Syncronized: "syncronized"> |
-    <Tab: "tab"> |
-    <Template: "template"> |
-    <Then: "then"> |
-    <This: "this"> |
-    <Throw: "throw"> |
-    <Throws: "throws"> |
-    <Trait: "trait"> |
-    <Tramsent: "tramsent"> |
-    <Transient: "transient"> |
-    <TypeDef: "typedef"> |
-    <TypeId: "typeid"> |
-    <TypeName: "typename"> |
-    <TypeOf: "typeof"> |
-    <Undef: "undef"> |
-    <Union: "union"> |
-    <Unsigned: "unsigned"> |
-    <Use: "use"> |
-    <Using: "using"> |
-    <Virtual: "virtual"> |
-    <Void: "void"> |
-    <Volatile: "volatile"> |
-    <With: "with"> |
-    <Yield: "yield"> |
+    <Explicit: "explicit"> {System.out.println("Token: Explicit. Valor del atributo: " + image);} |
+    <Export: "export"> {System.out.println("Token: Export. Valor del atributo: " + image);} |
+    <Extern: "extern"> {System.out.println("Token: Extern. Valor del atributo: " + image);} |
+    <Fileattr: "fileattr"> {System.out.println("Token: Fileattr. Valor del atributo: " + image);} |
+    <FileCopy: "filecopy"> {System.out.println("Token: FileCopy. Valor del atributo: " + image);} |
+    <Final: "final"> {System.out.println("Token: Final. Valor del atributo: " + image);} |
+    <Fix: "fix"> {System.out.println("Token: Fix. Valor del atributo: " + image);} |
+    <Fn: "fn"> {System.out.println("Token: Fn. Valor del atributo: " + image);} |
+    <Format: "format"> {System.out.println("Token: Format. Valor del atributo: " + image);} |
+    <Freefile: "freefile"> {System.out.println("Token: Freefile. Valor del atributo: " + image);} |
+    <FriendInLine: "friendinline"> {System.out.println("Token: FriendInLine. Valor del atributo: " + image);} |
+    <From: "from"> {System.out.println("Token: From. Valor del atributo: " + image);} |
+    <Get: "get"> {System.out.println("Token: Get. Valor del atributo: " + image);} |
+    <Global: "global"> {System.out.println("Token: Global. Valor del atributo: " + image);} |
+    <Goto: "goto"> {System.out.println("Token: Goto. Valor del atributo: " + image);} |
+    <Import: "import"> {System.out.println("Token: Import. Valor del atributo: " + image);} |
+    <In: "in"> {System.out.println("Token: In. Valor del atributo: " + image);} |
+    <Include_once: "include_once"> {System.out.println("Token: Include_once. Valor del atributo: " + image);} |
+    <InstanceOf: "instanceof"> {System.out.println("Token: InstanceOf. Valor del atributo: " + image);} |
+    <InsteadOf: "insteadof"> {System.out.println("Token: InsteadOf. Valor del atributo: " + image);} |
+    <Interface: "interface"> {System.out.println("Token: Interface. Valor del atributo: " + image);} |
+    <Is: "is"> {System.out.println("Token: Is. Valor del atributo: " + image);} |
+    <Isset: "isset"> {System.out.println("Token: Isset. Valor del atributo: " + image);} |
+    <Lambda: "lambda"> {System.out.println("Token: Lambda. Valor del atributo: " + image);} |
+    <Let: "let"> {System.out.println("Token: Let. Valor del atributo: " + image);} |
+    <List: "list"> {System.out.println("Token: List. Valor del atributo: " + image);} |
+    <Match: "match"> {System.out.println("Token: Match. Valor del atributo: " + image);} |
+    <Module: "module"> {System.out.println("Token: Module. Valor del atributo: " + image);} |
+    <Mutable: "mutable"> {System.out.println("Token: Mutable. Valor del atributo: " + image);} |
+    <NameSpace: "namespace"> {System.out.println("Token: NameSpace. Valor del atributo: " + image);} |
+    <Native: "native"> {System.out.println("Token: Native. Valor del atributo: " + image);} |
+    <New: "new"> {System.out.println("Token: New. Valor del atributo: " + image);} |
+    <Next: "next"> {System.out.println("Token: Next. Valor del atributo: " + image);} |
+    <Operator: "operator"> {System.out.println("Token: Operator. Valor del atributo: " + image);} |
+    <Package: "package"> {System.out.println("Token: Package. Valor del atributo: " + image);} |
+    <Print: "print"> {System.out.println("Token: Print. Valor del atributo: " + image);} |
+    <Raise: "raise"> {System.out.println("Token: Raise. Valor del atributo: " + image);} |
+    <Redo: "redo"> {System.out.println("Token: Redo. Valor del atributo: " + image);} |
+    <Register: "register"> {System.out.println("Token: Register. Valor del atributo: " + image);} |
+    <Reinterpret_cast: "reinterpret_cast"> {System.out.println("Token: Reinterpret_cast. Valor del atributo: " + image);} |
+    <Require: "require"> {System.out.println("Token: Require. Valor del atributo: " + image);} |
+    <Require_Once: "require_once"> {System.out.println("Token: Require_Once. Valor del atributo: " + image);} |
+    <Rescue: "rescue"> {System.out.println("Token: Rescue. Valor del atributo: " + image);} |
+    <Retry: "retry"> {System.out.println("Token: Retry. Valor del atributo: " + image);} |
+    <Return: "return"> {System.out.println("Token: Return. Valor del atributo: " + image);} |
+    <Seek: "seek"> {System.out.println("Token: Seek. Valor del atributo: " + image);} |
+    <Self: "self"> {System.out.println("Token: Self. Valor del atributo: " + image);} |
+    <Set: "set"> {System.out.println("Token: Set. Valor del atributo: " + image);} |
+    <Signed: "signed"> {System.out.println("Token: Signed. Valor del atributo: " + image);} |
+    <SizeOf: "sizeof"> {System.out.println("Token: SizeOf. Valor del atributo: " + image);} |
+    <Static_Cast: "static_cast"> {System.out.println("Token: Static_Cast. Valor del atributo: " + image);} |
+    <Strictfp: "strictfp"> {System.out.println("Token: Strictfp. Valor del atributo: " + image);} |
+    <Struct: "struct"> {System.out.println("Token: Struct. Valor del atributo: " + image);} |
+    <Super: "super"> {System.out.println("Token: Super. Valor del atributo: " + image);} |
+    <Syncronized: "syncronized"> {System.out.println("Token: Syncronized. Valor del atributo: " + image);} |
+    <Tab: "tab"> {System.out.println("Token: Tab. Valor del atributo: " + image);} |
+    <Template: "template"> {System.out.println("Token: Template. Valor del atributo: " + image);} |
+    <Then: "then"> {System.out.println("Token: Then. Valor del atributo: " + image);} |
+    <This: "this"> {System.out.println("Token: This. Valor del atributo: " + image);} |
+    <Throw: "throw"> {System.out.println("Token: Throw. Valor del atributo: " + image);} |
+    <Throws: "throws"> {System.out.println("Token: Throws. Valor del atributo: " + image);} |
+    <Trait: "trait"> {System.out.println("Token: Trait. Valor del atributo: " + image);} |
+    <Tramsent: "tramsent"> {System.out.println("Token: Tramsent. Valor del atributo: " + image);} |
+    <Transient: "transient"> {System.out.println("Token: Transient. Valor del atributo: " + image);} |
+    <TypeDef: "typedef"> {System.out.println("Token: TypeDef. Valor del atributo: " + image);} |
+    <TypeId: "typeid"> {System.out.println("Token: TypeId. Valor del atributo: " + image);} |
+    <TypeName: "typename"> {System.out.println("Token: TypeName. Valor del atributo: " + image);} |
+    <TypeOf: "typeof"> {System.out.println("Token: TypeOf. Valor del atributo: " + image);} |
+    <Undef: "undef"> {System.out.println("Token: Undef. Valor del atributo: " + image);} |
+    <Union: "union"> {System.out.println("Token: Union. Valor del atributo: " + image);} |
+    <Unsigned: "unsigned"> {System.out.println("Token: Unsigned. Valor del atributo: " + image);} |
+    <Use: "use"> {System.out.println("Token: Use. Valor del atributo: " + image);} |
+    <Using: "using"> {System.out.println("Token: Using. Valor del atributo: " + image);} |
+    <Virtual: "virtual"> {System.out.println("Token: Virtual. Valor del atributo: " + image);} |
+    <Void: "void"> {System.out.println("Token: Void. Valor del atributo: " + image);} |
+    <Volatile: "volatile"> {System.out.println("Token: Volatile. Valor del atributo: " + image);} |
+    <With: "with"> {System.out.println("Token: With. Valor del atributo: " + image);} |
+    <Yield: "yield"> {System.out.println("Token: Yield. Valor del atributo: " + image);} |
     
     <Identificador: <letraunica>((<dig>) | (<letraunica>))*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
     
