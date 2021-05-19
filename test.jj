@@ -124,9 +124,92 @@ TOKEN:
     <Doevents: "doevents">  {System.out.println("Token: Doevents. Valor del atributo: " + image);} |
     <Each: "each">  {System.out.println("Token: Each. Valor del atributo: " + image);} |
     <Echo: "echo">  {System.out.println("Token: Echo. Valor del atributo: " + image);} |
-    <Eof: "eof">  {System.out.println("Token: Eof. Valor del atributo: " + image);} |
-    <Eqv: "eqv">  {System.out.println("Token: Eqv. Valor del atributo: " + image);} |
-    <Erase: "erase">  {System.out.println("Token: Erase. Valor del atributo: " + image);} |
+    <Eof: "eof"> {System.out.println("Token: Eof. Valor del atributo: " + image);} |
+    <Eqv: "eqv"> {System.out.println("Token: Eqv. Valor del atributo: " + image);} |
+    <Erase: "erase"> {System.out.println("Token: Erase. Valor del atributo: " + image);} |
+    <Error: "error"> {System.out.println("Token: Error. Valor del atributo: " + image);} |
+    <Eval: "eval"> {System.out.println("Token: Eval. Valor del atributo: " + image);} |
+    <Except: "except"> {System.out.println("Token: Except. Valor del atributo: " + image);} |
+    <Exec: "exec"> {System.out.println("Token: Exec. Valor del atributo: " + image);} |
+    <Exit: "exit"> {System.out.println("Token: Exit. Valor del atributo: " + image);} |
+    <Explicit: "explicit"> |
+    <Export: "export"> |
+    <Extern: "extern"> |
+    <Fileattr: "fileattr"> |
+    <FileCopy: "filecopy"> |
+    <Final: "final"> |
+    <Fix: "fix"> |
+    <Fn: "fn"> |
+    <Format: "format"> |
+    <Freefile: "freefile"> |
+    <FriendInLine: "friendinline"> |
+    <From: "from"> |
+    <Get: "get"> |
+    <Global: "global"> |
+    <Goto: "goto"> |
+    <Import: "import"> |
+    <In: "in"> |
+    <Include_once: "include_once"> |
+    <InstanceOf: "instanceof"> |
+    <InsteadOf: "insteadof"> |
+    <Interface: "interface"> |
+    <Is: "is"> |
+    <Isset: "isset"> |
+    <Lambda: "lambda"> |
+    <Let: "let"> |
+    <List: "list"> |
+    <Match: "match"> |
+    <Module: "module"> |
+    <Mutable: "mutable"> |
+    <NameSpace: "namespace"> |
+    <Native: "native"> |
+    <New: "new"> |
+    <Next: "next"> |
+    <Operator: "operator"> |
+    <Package: "package"> |
+    <Print: "print"> |
+    <Raise: "raise"> |
+    <Redo: "redo"> |
+    <Register: "register"> |
+    <Reinterpret_cast: "reinterpret_cast"> |
+    <Require: "require"> |
+    <Require_Once: "require_once"> |
+    <Rescue: "rescue"> |
+    <Retry: "retry"> |
+    <Return: "return"> |
+    <Seek: "seek"> |
+    <Self: "self"> |
+    <Set: "set"> |
+    <Signed: "signed"> |
+    <SizeOf: "sizeof"> |
+    <Static_Cast: "static_cast"> |
+    <Strictfp: "strictfp"> |
+    <Struct: "struct"> |
+    <Super: "super"> |
+    <Syncronized: "syncronized"> |
+    <Tab: "tab"> |
+    <Template: "template"> |
+    <Then: "then"> |
+    <This: "this"> |
+    <Throw: "throw"> |
+    <Throws: "throws"> |
+    <Trait: "trait"> |
+    <Tramsent: "tramsent"> |
+    <Transient: "transient"> |
+    <TypeDef: "typedef"> |
+    <TypeId: "typeid"> |
+    <TypeName: "typename"> |
+    <TypeOf: "typeof"> |
+    <Undef: "undef"> |
+    <Union: "union"> |
+    <Unsigned: "unsigned"> |
+    <Use: "use"> |
+    <Using: "using"> |
+    <Virtual: "virtual"> |
+    <Void: "void"> |
+    <Volatile: "volatile"> |
+    <With: "with"> |
+    <Yield: "yield"> |
     
     <Identificador: <letraunica>((<dig>) | (<letraunica>))*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
     
@@ -159,8 +242,148 @@ void Iniciar() :
     <Alias> |
     <Ascendiente> |
     <Ensamblador> |
+    <Afirmar> |
+    <Await> |
+    <Base> |
+    <Call> |
+    <Callable> |
+    <Choose> |
+    <Class> |
+    <Clear> |
+    <Clone> |
+    <Collection> |
+    <Command> |
+    <Compare> |
+    <Inmutable> |
+    <ConstCast> |
+    <Continuar> |
+    <Dia> |
+    <Debugger> |
+    <Declare> |
+    <Defined> |
+    <Del> |
+    <Delete> |
+    <Die> |
+    <Doevents> |
+    <Each> |
+    <Echo> |
+    <Eof> |
+    <Eqv> |
+    <Erase> |
+    <Error> |
+    <Eval> |
+    <Except> |
+    <Exec> |
+    <Exit> |
+    <Explicit> |
+    <Export> |
+    <Extern> |
+    <Fileattr> |
+    <FileCopy> |
+    <Final> |
+    <Fix> |
+    <Fn> |
+    <Format> |
+    <Freefile> |
+    <FriendInLine> |
+    <From> |
+    <Get> |
+    <Global> |
+    <Goto> |
+    <Import> |
+    <In> |
+    <Include_once> |
+    <InstanceOf> |
+    <InsteadOf> |
+    <Interface> |
+    <Is> |
+    <Isset> |
+    <Lambda> |
+    <Let> |
+    <List> |
+    <Match> |
+    <Module> |
+    <Mutable> |
+    <NameSpace> |
+    <Native> |
+    <New> |
+    <Next> |
+    <Operator> |
+    <Package> |
+    <Print> |
+    <Raise> |
+    <Redo> |
+    <Register> |
+    <Reinterpret_cast> |
+    <Require> |
+    <Require_Once> |
+    <Rescue> |
+    <Retry> |
+    <Return> |
+    <Seek> |
+    <Self> |
+    <Set> |
+    <Signed> |
+    <SizeOf> |
+    <Static_Cast> |
+    <Strictfp> |
+    <Struct> |
+    <Super> |
+    <Syncronized> |
+    <Tab> |
+    <Template> |
+    <Then> |
+    <This> |
+    <Throw> |
+    <Throws> |
+    <Trait> |
+    <Tramsent> |
+    <Transient> |
+    <TypeDef> |
+    <TypeId> |
+    <TypeName> |
+    <TypeOf> |
+    <Undef> |
+    <Union> |
+    <Unsigned> |
+    <Use> |
+    <Using> |
+    <Virtual> |
+    <Void> |
+    <Volatile> |
+    <With> |
+    <Yield>)+
+    
+    <TipoDato> |
+    <Asig> |
+    <OperadorLog> |
     <Ciclo> |
-    <Afirmar>)+
+    <DecCaso> | 
+    <Switch> |
+    <Case> |
+    <Default> |
+    <ComIni> |
+    <Operador> |
+    <ParIni> |
+    <ParFin> |
+    <ArrIni> |
+    <ArrFin> |
+    <CorIni> |
+    <ConFin> |
+    <Herencia> |
+    <Privcidad> |
+    <IncDec> |
+    <Comis> |
+    <Booleano> |
+    <Nulo> |
+    <Split> |
+    <Implode> |
+    <FunTri> |
+    <Trim> |
+    <ManArchivo> |
+    <Try> |
+    <Catch> |
+    <Finally>)+
 
     <EOF> {
         if (tabla.size() > 0) {
