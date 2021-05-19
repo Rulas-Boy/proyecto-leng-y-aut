@@ -352,7 +352,7 @@ void Iniciar() :
     <Void> |
     <Volatile> |
     <With> |
-    <Yield>)+
+    <Yield> |
     
     <TipoDato> |
     <Asig> |
