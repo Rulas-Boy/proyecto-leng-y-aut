@@ -248,8 +248,7 @@ void Iniciar() :
             tabla.add(palabra);
 
         System.out.println("-> Identificador (" + Integer.toString(i) + ")");
-    }
-    <Identificador> |
+    } |
     <Absoluto> |
     <Abstracto> |
     <Activar> |
