@@ -13,7 +13,8 @@ class test
         {
             test analizador = new test(System.in);
 
-            analizador.Iniciar();
+            //analizador.Iniciar();
+            analizador.Codigo();
 
             System.out.println("\nLa cadena fue aceptada correctamente");
         }
@@ -36,69 +37,56 @@ SKIP : { " " | "\t" | "\n" | "\r" }
 
 TOKEN :
 {
-    <#letraunica: ["a"-"z","A"-"Z"]> |
+    <#letra: ["a"-"z","A"-"Z"]> |
     <#dig: ["0"-"9"]>
 }
 
 TOKEN:
 {
     <TipoDato: "bool" | "byte" | "char" | "int" | "double" | "float" | "string" | "var"> {System.out.println("Token: TipoDato. Valor del atributo: " + image);} |
-    
-    <Asig: "="> {System.out.println("Token: Asig.");} |
-    
-    <OperadorLog: "and" | "&&" | "||" | "or" | "xor" | "<=" | ">=" | "==" | "!=" | "not"> {System.out.println("Token: OperadorLog. Valor del atributo: " + image);} |
-
+    <OperadorLog: "and" | "&&" | "||" | "or" | "xor" | "<=" | "<" | ">=" | ">" | "==" | "!=" | "not"> {System.out.println("Token: OperadorLog. Valor del atributo: " + image);} |
     <Ciclo: "for" | "foreach" | "while" | "do" | "until"> {System.out.println("Token: Ciclo. Valor del atributo: " + image);} |
-    
     <CasoSino: "elseif" | "elsif" | "elif" | "unless"> {System.out.println("Token: DecCaso. Valor del atributo: " + image);} | // Declaracion de caso
-    
-    <Switch: "switch"> {System.out.println("Token: Switch.");} | // Declaración de múltiples casos
-    
-    <Case: "case"> {System.out.println("Token: Case.");} | // Declaración de caso
-
     <Default: "default" | "else"> {System.out.println("Token: Default. Valor del atributo: " + image);} | // En caso de que no se cumpla una condición
-    
-    <Operador: "+" | "-" | "*" | "/" | "**" | "%"> | // Operaciones aritméticas
+    <Operador: "+" | "-" | "*" | "/" | "**" | "%"> {System.out.println("Token: Operador. Valor del atributo: " + image);} | // Operaciones aritméticas
+    <Herencia: "extends" | "implements"> {System.out.println("Token: Herencia. Valor del atributo: " + image);} |
+    <Acceso: <ArrIni> ("public" | "private" | "protected") <ArrFin>> {System.out.println("Token: Acceso. Valor del atributo: " + image);} | // Acceso de variables
+    <IncDec: "++" | "--"> {System.out.println("Token: IncDec. Valor del atributo: " + image);} | // Incremento o decremento de valor
+    <Booleano: "true" | "false"> {System.out.println("Token: Booleano. Valor del atributo: " + image);} |
+    <Nulo: "NULL" | "null" | "nil"> {System.out.println("Token: Nulo. Valor del atributo: " + image);} |
+    <Split: "split" | "explode"> {System.out.println("Token: Split. Valor del atributo: " + image);} | // Separar cadena en arreglo
+    <FunTri: "Sin" | "Cos" | "Tan"> {System.out.println("Token: FunTri. Valor del atributo: " + image);} | // Funciones trigonométricas
+    <Trim: "Trim" | "LTrim" |"RTrim"> {System.out.println("Token: Trim. Valor del atributo: " + image);} | // Cortar espacios extras de texto
+    <ManArchivo: "Open" | "Close"> {System.out.println("Token: ManArchivo. Valor del atributo: " + image);} | // Abrir o cerrar archivo
 
-    <DecCaso: "if"> {System.out.println("Token: If.");} |
-
+    <Switch: "switch"> {System.out.println("Token: Switch.");} | // Declaración de múltiples casos
+    <Case: "case"> {System.out.println("Token: Case.");} | // Declaración de caso
+    <Comillas: "'"> {System.out.println("Token: Comillas.");} | // Comillas
+    <DobleComillas: "\""> {System.out.println("Token: DobleComillas.");} | // Comillas
+    <DecCaso: "if"> {System.out.println("Token: DecCaso.");} |
     <ComIni: "/*"> {System.out.println("Token: ComIni.");} |
     <ComFin: "*/"> {System.out.println("Token: ComFin.");} |
     <Comentario: "//"> {System.out.println("Token: Comentario.");} |
-
-    <ParIni: "("> |
-    <ParFin: ")"> |
-    
-    <ArrIni: "["> |
-    <ArrFin: "]"> |
-    
-    <CorIni: "{"> |
-    <ConFin: "}"> |
-    
-    <Herencia: "extends" | "implements"> |
-    
-    <Privcidad: "public" | "private" | "protected"> | // Privcidad de variables
-    
-    <IncDec: "++" | "--"> | // Incremento o decremento de valor
-    
-    <Comis: "\"" | "'"> | // Comillas
-    
-    <Booleano: "true" | "false"> |
-    
-    <Nulo: "NULL" | "null" | "nil"> |
-    
-    <Split: "split" | "explode"> | // Separar cadena en arreglo
-    <Implode: "implode"> | // Juntar arreglo en cadena
-    
-    <FunTri: "Sin" | "Cos" | "Tan"> | // Funciones trigonométricas
-    
-    <Trim: "Trim" | "LTrim" |"RTrim"> | // Cortar espacios extras de texto
-    
-    <ManArchivo: "Open" | "Close"> | // Abrir o cerrar archivo
-
-    <Try: "try"> |
-    <Catch: "catch"> |
-    <Finally: "finally"> |
+    <Arroba: "@"> {System.out.println("Token: Arroba.");} |
+    <Gato: "#"> {System.out.println("Token: Gato.");} |
+    <Interrogacion: "?"> {System.out.println("Token: Interrogacion.");} |
+    <Asig: ":"> {System.out.println("Token: Asig.");} |
+    <PuntoComa: ";"> {System.out.println("Token: PuntoComa.");} |
+    <Punto: "."> {System.out.println("Token: Punto.");} |
+    <Coma: ","> {System.out.println("Token: Coma.");} |
+    <ParIni: "("> {System.out.println("Token: ParIni.");} |
+    <ParFin: ")"> {System.out.println("Token: ParFin.");} |
+    <ArrIni: "["> {System.out.println("Token: ArrIni.");} |
+    <ArrFin: "]"> {System.out.println("Token: ArrFin.");} |
+    <CorIni: "{"> {System.out.println("Token: CorIni.");} |
+    <ConFin: "}"> {System.out.println("Token: ConFin.");} |
+    <ContenedorIzq: "<|"> {System.out.println("Token: ContenedorIzq.");} |
+    <ContenedorDer: "|>"> {System.out.println("Token: ContenedorDer.");} |
+    <Tilde: "~"> {System.out.println("Token: Tilde.");} | // Tile de la ñ
+    <Implode: "implode"> {System.out.println("Token: Implode.");} | // Juntar arreglo en cadena
+    <Try: "try"> {System.out.println("Token: Try.");} |
+    <Catch: "catch"> {System.out.println("Token: Catch.");} |
+    <Finally: "finally"> {System.out.println("Token: Finally.");} |
     
     <Absoluto: "abs"> {System.out.println("Token: Absoluto.");} |
     <Abstracto: "abstract"> {System.out.println("Token: Abstracto.");} |
@@ -112,7 +100,8 @@ TOKEN:
     <Call: "call"> {System.out.println("Token: Call.");} |
     <Callable: "callable"> {System.out.println("Token: Callable.");} |
     <Choose: "choose"> {System.out.println("Token: Choose.");} |
-    <Class: "class"> {System.out.println("Token: Class.");} |
+    <DecClase: "class"> {System.out.println("Token: Class.");} |
+    <DecMain: "main"> {System.out.println("Token: DecMain.");} |
     <Clear: "clear"> {System.out.println("Token: Clear.");} |
     <Clone: "clone"> {System.out.println("Token: Clone.");} |
     <Collection: "collection"> {System.out.println("Token: Collection.");} |
@@ -213,20 +202,68 @@ TOKEN:
     <Use: "use"> {System.out.println("Token: Use.");} |
     <Using: "using"> {System.out.println("Token: Using.");} |
     <Virtual: "virtual"> {System.out.println("Token: Virtual.");} |
-    <Void: "void"> {System.out.println("Token: Void.");} |
+    <Vacio: "void"> {System.out.println("Token: Vacio.");} |
     <Volatile: "volatile"> {System.out.println("Token: Volatile.");} |
     <With: "with"> {System.out.println("Token: With.");} |
     <Yield: "yield"> {System.out.println("Token: Yield.");} |
     
-    <Identificador: <letraunica>((<dig>) | (<letraunica>))*> {
+    <Identificador: <letra>((<dig>) | (<letra>))*> {
         /*System.out.println("Token: Identificador. Valor del atributo: " + image);
         tabla.add(image);
         Mensaje();
         System.out.println("Token: Identificador (0). Valor del atributo: " + image);*/
     } |
-    
+    <Texto: <Comillas> (<letra> | <dig>)* <Comillas>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Entero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
-    <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);}
+    <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
+
+    <Nada: ""> |
+    <Clase: <DecObjeto> <ContenedorIzq> (<Propiedad>)+ <ContenedorDer>> {System.out.println("Token: Clase.");} |
+    <DecObjeto: (<DecClase> | <TipoDato> | <Vacio>) (<Acceso>)? <Identificador>> {System.out.println("Token: Propiedad.");} |
+    <Propiedad: <MetodoEntrada> | <Clase> | (<DecObjeto> (<Variable> | <Funcion>))> {System.out.println("Token: DecObjeto.");} |
+    //<Beta: >
+    <MetodoEntrada: <DecMain> <Parametro> <CajaInstr>> {System.out.println("Token: MetodoEntrada.");} |
+    <Variable: (<Asig> <Valor>)? <PuntoComa>> {System.out.println("Token: Variable.");} |
+    <Valor: <Texto> | <Entero> | <Decimal> | <Booleano> | <Nulo>> {System.out.println("Token: Valor.");} |
+    <Funcion: <Parametro> <CajaInstr>> {System.out.println("Token: Funcion.");} |
+    <Parametro: <ParIni> <TipoDato> <Identificador> (<Coma> <TipoDato> <Identificador>)* <ParFin>> {System.out.println("Token: Parametro.");} |
+    <CajaInstr: <ContenedorIzq> (<Instruccion>)+ <ContenedorDer>> {System.out.println("Token: CajaInstr.");} |
+    <Instruccion: <LlamadaFun> | <Retorno> | <IncDecVariable>> {System.out.println("Token: Instruccion.");} |
+    <LlamadaFun: <Arroba> <Identificador> (<Parametro>)?> {System.out.println("Token: LlamadaFun.");} |
+    <Retorno: <Return> (<Valor> | <Identificador>)> {System.out.println("Token: Retorno.");} |
+    <IncDecVariable: (((<Entero>)? <IncDec> <Identificador>) | (<Identificador> <IncDec> (<Entero>)?)) <PuntoComa>> {System.out.println("Token: IncDecVariable.");}
+}
+
+void Codigo() :
+{
+    Token t;
+    ArrayList<String> tabla;
+    tabla = new ArrayList<String>();
+}
+{
+    <Clase>
+    /*t = <Identificador> {
+        String palabra = t.image;
+        int c = 0;
+
+        for (; c < tabla.size(); c++)
+            if (palabra.equals(tabla.get(c)))
+                break;
+        
+        if (tabla.size() == c)
+            tabla.add(palabra);
+
+        System.out.println("Identificador (" + Integer.toString(c) + "): " + t.image);
+    }*/
+
+    <EOF> {
+        if (tabla.size() > 0) {
+            System.out.println("\nLista de identificadores encontrados");
+
+            for (int i = 0; i < tabla.size(); i++)
+                System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
+        }
+    }
 }
 
 void Iniciar() :
@@ -247,7 +284,7 @@ void Iniciar() :
         if (tabla.size() == i)
             tabla.add(palabra);
 
-        System.out.println("-> Identificador (" + Integer.toString(i) + ")");
+        System.out.println("Identificador (" + Integer.toString(i) + "): " + t.image);
     } |
     <Absoluto> |
     <Abstracto> |
@@ -261,7 +298,8 @@ void Iniciar() :
     <Call> |
     <Callable> |
     <Choose> |
-    <Class> |
+    <DecClase> |
+    <DecMain> |
     <Clear> |
     <Clone> |
     <Collection> |
@@ -269,6 +307,8 @@ void Iniciar() :
     <Compare> |
     <Inmutable> |
     <ConstCast> |
+    <ContenedorIzq> |
+    <ContenedorDer> |
     <Continuar> |
     <Dia> |
     <Debugger> |
@@ -349,6 +389,7 @@ void Iniciar() :
     <This> |
     <Throw> |
     <Throws> |
+    <Tilde> |
     <Trait> |
     <Tramsent> |
     <Transient> |
@@ -362,13 +403,20 @@ void Iniciar() :
     <Use> |
     <Using> |
     <Virtual> |
-    <Void> |
+    <Vacio> |
     <Volatile> |
     <With> |
     <Yield> |
     
     <TipoDato> |
     <Asig> |
+    <Arroba> |
+    <Gato> |
+    <Interrogacion> |
+    <Entero> |
+    <PuntoComa> |
+    <Punto> |
+    <Coma> |
     <OperadorLog> |
     <Ciclo> |
     <DecCaso> |
@@ -385,9 +433,10 @@ void Iniciar() :
     <CorIni> |
     <ConFin> |
     <Herencia> |
-    <Privcidad> |
+    <Acceso> |
     <IncDec> |
-    <Comis> |
+    <Comillas> |
+    <DobleComillas> |
     <Booleano> |
     <Nulo> |
     <Split> |
@@ -403,8 +452,8 @@ void Iniciar() :
         if (tabla.size() > 0) {
             System.out.println("\nLista de identificadores encontrados");
 
-            //for (int i = 0; i < tabla.size(); i++)
-            //    System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
+            for (int i = 0; i < tabla.size(); i++)
+                System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
         }
     }
 }
