@@ -3,7 +3,7 @@ class Prueba <|
         ~Operaciones op;
 
         op.@Mayor(5, 3);
-        Console.print(op.Usos);
+        Console.@print(op.Usos);
     |>
 
     class [private] Operaciones <|

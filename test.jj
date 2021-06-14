@@ -50,7 +50,7 @@ TOKEN:
     <Default: "default" | "else"> {System.out.println("Token: Default. Valor del atributo: " + image);} | // En caso de que no se cumpla una condición
     <Operador: "+" | "-" | "*" | "/" | "**" | "%"> {System.out.println("Token: Operador. Valor del atributo: " + image);} | // Operaciones aritméticas
     <Herencia: "extends" | "implements"> {System.out.println("Token: Herencia. Valor del atributo: " + image);} |
-    <Acceso: <ArrIni> ("public" | "private" | "protected") <ArrFin>> {System.out.println("Token: Acceso. Valor del atributo: " + image);} | // Acceso de variables
+    <Acceso: <CorIni> ("public" | "private" | "protected") <CorFin>> {System.out.println("Token: Acceso. Valor del atributo: " + image);} | // Acceso de variables
     <IncDec: "++" | "--"> {System.out.println("Token: IncDec. Valor del atributo: " + image);} | // Incremento o decremento de valor
     <Booleano: "true" | "false"> {System.out.println("Token: Booleano. Valor del atributo: " + image);} |
     <Nulo: "NULL" | "null" | "nil"> {System.out.println("Token: Nulo. Valor del atributo: " + image);} |
@@ -76,10 +76,10 @@ TOKEN:
     <Coma: ","> {System.out.println("Token: Coma.");} |
     <ParIni: "("> {System.out.println("Token: ParIni.");} |
     <ParFin: ")"> {System.out.println("Token: ParFin.");} |
-    <ArrIni: "["> {System.out.println("Token: ArrIni.");} |
-    <ArrFin: "]"> {System.out.println("Token: ArrFin.");} |
-    <CorIni: "{"> {System.out.println("Token: CorIni.");} |
-    <ConFin: "}"> {System.out.println("Token: ConFin.");} |
+    <CorIni: "["> {System.out.println("Token: CorIni.");} |
+    <CorFin: "]"> {System.out.println("Token: CorFin.");} |
+    <LlaIni: "{"> {System.out.println("Token: LlaIni.");} |
+    <LlaFin: "}"> {System.out.println("Token: LlaFin.");} |
     <ContenedorIzq: "<|"> {System.out.println("Token: ContenedorIzq.");} |
     <ContenedorDer: "|>"> {System.out.println("Token: ContenedorDer.");} |
     <Tilde: "~"> {System.out.println("Token: Tilde.");} | // Tile de la ñ
@@ -217,21 +217,103 @@ TOKEN:
     <Entero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
     <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
 
-    <Nada: ""> |
-    <Clase: <DecObjeto> <ContenedorIzq> (<Propiedad>)+ <ContenedorDer>> {System.out.println("Token: Clase.");} |
-    <DecObjeto: (<DecClase> | <TipoDato> | <Vacio>) (<Acceso>)? <Identificador>> {System.out.println("Token: Propiedad.");} |
-    <Propiedad: <MetodoEntrada> | <Clase> | (<DecObjeto> (<Variable> | <Funcion>))> {System.out.println("Token: DecObjeto.");} |
-    //<Beta: >
-    <MetodoEntrada: <DecMain> <Parametro> <CajaInstr>> {System.out.println("Token: MetodoEntrada.");} |
-    <Variable: (<Asig> <Valor>)? <PuntoComa>> {System.out.println("Token: Variable.");} |
-    <Valor: <Texto> | <Entero> | <Decimal> | <Booleano> | <Nulo>> {System.out.println("Token: Valor.");} |
-    <Funcion: <Parametro> <CajaInstr>> {System.out.println("Token: Funcion.");} |
-    <Parametro: <ParIni> <TipoDato> <Identificador> (<Coma> <TipoDato> <Identificador>)* <ParFin>> {System.out.println("Token: Parametro.");} |
-    <CajaInstr: <ContenedorIzq> (<Instruccion>)+ <ContenedorDer>> {System.out.println("Token: CajaInstr.");} |
-    <Instruccion: <LlamadaFun> | <Retorno> | <IncDecVariable>> {System.out.println("Token: Instruccion.");} |
-    <LlamadaFun: <Arroba> <Identificador> (<Parametro>)?> {System.out.println("Token: LlamadaFun.");} |
-    <Retorno: <Return> (<Valor> | <Identificador>)> {System.out.println("Token: Retorno.");} |
-    <IncDecVariable: (((<Entero>)? <IncDec> <Identificador>) | (<Identificador> <IncDec> (<Entero>)?)) <PuntoComa>> {System.out.println("Token: IncDecVariable.");}
+    <Nada: "">
+}
+
+void Clase():
+{}
+{
+    DecObjeto() <ContenedorIzq> (Propiedad()/* | Clase()*/)+ <ContenedorDer>
+}
+
+void DecObjeto():
+{}
+{
+    (<DecClase> | DecTipoDato() | <Vacio>) (<Acceso>)? <Identificador>
+}
+
+void DecTipoDato():
+{}
+{
+    <TipoDato> (<CorIni> <CorFin>)? // ¿Arreglo?
+}
+
+void Propiedad():
+{}
+{
+    MetodoEntrada() | (DecObjeto() (Variable() | Funcion()))
+}
+
+void MetodoEntrada():
+{}
+{
+    <DecMain> <Parametro> <CajaInstr>
+}
+
+void Variable():
+{}
+{
+    (<Asig> Valor())? <PuntoComa>
+}
+
+void Valor():
+{}
+{
+    <Texto> | <Entero> | <Decimal> | <Booleano> | <Nulo>
+}
+
+void Funcion():
+{}
+{
+    Parametro() CajaInstr()
+}
+
+void Parametro():
+{}
+{
+    <ParIni> DecTipoDato() <Identificador> (<Coma> DecTipoDato() <Identificador>)* <ParFin>
+}
+
+void CajaInstr():
+{}
+{
+    <ContenedorIzq> (Instruccion())+ <ContenedorDer>
+}
+
+void Instruccion():
+{}
+{
+    (LlamadaFun() | Retorno() | IncDecVariable() | InstanciaObj() | LlamadaObjeto()) <PuntoComa>
+}
+
+void LlamadaFun():
+{}
+{
+    <Arroba> <Identificador> (Parametro())?
+}
+
+void Retorno():
+{}
+{
+    <Return> (<Valor> | <Identificador>)
+}
+
+void IncDecVariable():
+{}
+{
+    ((<Entero>)? <IncDec> <Identificador>) | (<Identificador> <IncDec> (<Entero>)?)
+}
+
+void InstanciaObj():
+{}
+{
+    <Tilde> <Identificador>{2}
+}
+
+void LlamadaObjeto():
+{}
+{
+    <Identificador> <Punto> LlamadaFun()
 }
 
 void Codigo() :
@@ -408,7 +490,7 @@ void Iniciar() :
     <With> |
     <Yield> |
     
-    <TipoDato> |
+    DecTipoDato() |
     <Asig> |
     <Arroba> |
     <Gato> |
@@ -428,10 +510,10 @@ void Iniciar() :
     <Operador> |
     <ParIni> |
     <ParFin> |
-    <ArrIni> |
-    <ArrFin> |
     <CorIni> |
-    <ConFin> |
+    <CorFin> |
+    <LlaIni> |
+    <LlaFin> |
     <Herencia> |
     <Acceso> |
     <IncDec> |
