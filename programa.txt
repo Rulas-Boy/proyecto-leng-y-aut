@@ -1,23 +1,30 @@
-class Prueba <|
-    main(String[] Args) <|
-        ~Operaciones op;
+main(String[] Args) <|
+    ~Operaciones op;
 
-        op.@Mayor(5, 3);
-        Console.@print(op.Usos);
+    op.@Mayor(5, 3);
+    Console.@print(op.Usos);
+|>
+
+class [private] Operaciones <|
+    int [private] Usos : 0;
+
+    int Mayor (int x, int y) <|
+        bool Resultado;
+
+        try <|
+            Resultado : (x > y) ? x # y
+        |>
+        catch (Exception e) <|
+            Console.@print(op.Usos);
+        |>
+
+        @IncrementoCont;
+
+        return Resultado;
     |>
 
-    class [private] Operaciones <|
-        int [private] Usos : 0;
-
-        int Mayor (int x, int y) <|
-            @IncrementoCont;
-            
-            return (x > y) ? x # y;
-        |>
-
-        void IncrementoCont <|
-            Usos++2;
-            2++Usos;
-        |>
+    void IncrementoCont <|
+        Usos++2;
+        2++Usos;
     |>
 |>
