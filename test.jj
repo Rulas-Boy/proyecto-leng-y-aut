@@ -289,7 +289,7 @@ void Instruccion():
 void LlamadaFun():
 {}
 {
-    <Arroba> <Identificador> (Parametro())?
+    <Arroba> <Identificador> (Parametro())? // ¿Función o procedimiento?
 }
 
 void Retorno():
@@ -316,7 +316,7 @@ void LlamadaObjeto():
     <Identificador> <Punto> LlamadaFun()
 }
 
-void Codigo() :
+void Codigo():
 {
     Token t;
     ArrayList<String> tabla;
