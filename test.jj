@@ -265,7 +265,7 @@ void Propiedad():
 void MetodoEntrada():
 {}
 {
-    <DecMain> <Parametro> <CajaInstr>
+    <DecMain> Parametro() CajaInstr()
 }
 
 void Variable():
@@ -316,16 +316,58 @@ void SwitchCase():
     <Switch> <ParIni> UsoVariableValor() <ParFin> <LlaIni> (<Case> CaseBody())+ (<Default> CaseBody())? <LlaFin>
 }
 
-void CicloWhile():
-{}
-{
-    <While>
-}
-
 void CaseBody():
 {}
 {
-    <Valor> <Gato> Instruccion()* <Break>?
+    Valor() <Gato> (Instruccion())* (<Break>)?
+}
+
+void Ciclo():
+{}
+{
+    CicloFor() | CicloWhile() | CicloDoWhile()
+}
+
+void CicloFor():
+{}
+{
+    <For> <ParIni> ForInicializador() <PuntoComa> Condicion() <PuntoComa> ForIncremento() <ParFin> CajaInstr()
+}
+
+void ForInicializador():
+{}
+{
+    (DecTipoDato())? AsignacionValor()
+}
+
+void ForIncremento():
+{}
+{
+    IncDecVariable() | AsignacionValor()
+}
+
+void CicloForeach():
+{}
+{
+    <Foreach> <ParIni> ForInicializador() <In> <Identificador> <ParFin> CajaInstr()
+}
+
+void CicloWhile():
+{}
+{
+    ContWhile() CajaInstr()
+}
+
+void CicloDoWhile():
+{}
+{
+    <Do> CajaInstr() ContWhile() <PuntoComa>
+}
+
+void ContWhile():
+{}
+{
+    <While> <ParIni> Condicion() <ParFin>
 }
 
 void Condicion():
@@ -337,7 +379,7 @@ void Condicion():
 void UsoVariableValor():
 {}
 {
-    <Identificador> PosArr()? LlamadaFun()? | Valor() | AsigCondicional()
+    <Identificador> (PosArr())? (LlamadaFun())? | Valor() | AsigCondicional()
 }
 
 void PosArr(): // Posición en arreglo
@@ -391,7 +433,7 @@ void IncDecVariable():
 void InstanciaObj():
 {}
 {
-    <Tilde> <Identificador>{2}
+    <Tilde> <Identificador> <Identificador>
 }
 
 void Codigo():
@@ -401,7 +443,7 @@ void Codigo():
     tabla = new ArrayList<String>();
 }
 {
-    <Clase>
+    Clase()
 
     <EOF> {
         if (tabla.size() > 0) {
