@@ -12,7 +12,7 @@ class [private] Operaciones <|
         bool Resultado;
 
         try <|
-            Resultado : (x > y) ? x # y
+            Resultado : (x > y) ? x # y;
         |>
         catch (Exception e) <|
             Console.@print(op.Usos);

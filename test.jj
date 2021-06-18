@@ -45,12 +45,11 @@ TOKEN:
 {
     <TipoDato: "bool" | "byte" | "char" | "int" | "double" | "float" | "string" | "var"> {System.out.println("Token: TipoDato. Valor del atributo: " + image);} |
     <OperadorLog: "and" | "&&" | "||" | "or" | "xor" | "<=" | "<" | ">=" | ">" | "==" | "!=" | "not"> {System.out.println("Token: OperadorLog. Valor del atributo: " + image);} |
-    <Ciclo: "for" | "foreach" | "while" | "do" | "until"> {System.out.println("Token: Ciclo. Valor del atributo: " + image);} |
-    <CasoSino: "elseif" | "elsif" | "elif" | "unless"> {System.out.println("Token: DecCaso. Valor del atributo: " + image);} | // Declaracion de caso
+    <ElseIf: "elseif" | "elsif" | "elif" | "unless"> {System.out.println("Token: ElseIf. Valor del atributo: " + image);} | // Declaracion de caso
     <Default: "default" | "else"> {System.out.println("Token: Default. Valor del atributo: " + image);} | // En caso de que no se cumpla una condición
     <Operador: "+" | "-" | "*" | "/" | "**" | "%"> {System.out.println("Token: Operador. Valor del atributo: " + image);} | // Operaciones aritméticas
     <Herencia: "extends" | "implements"> {System.out.println("Token: Herencia. Valor del atributo: " + image);} |
-    <Acceso: <CorIni> ("public" | "private" | "protected") <CorFin>> {System.out.println("Token: Acceso. Valor del atributo: " + image);} | // Acceso de variables
+    <Acceso: "public" | "private" | "protected"> {System.out.println("Token: Acceso. Valor del atributo: " + image);} | // Acceso de variables
     <IncDec: "++" | "--"> {System.out.println("Token: IncDec. Valor del atributo: " + image);} | // Incremento o decremento de valor
     <Booleano: "true" | "false"> {System.out.println("Token: Booleano. Valor del atributo: " + image);} |
     <Nulo: "NULL" | "null" | "nil"> {System.out.println("Token: Nulo. Valor del atributo: " + image);} |
@@ -61,9 +60,9 @@ TOKEN:
 
     <Switch: "switch"> {System.out.println("Token: Switch.");} | // Declaración de múltiples casos
     <Case: "case"> {System.out.println("Token: Case.");} | // Declaración de caso
-    <Comillas: "'"> {System.out.println("Token: Comillas.");} | // Comillas
-    <DobleComillas: "\""> {System.out.println("Token: DobleComillas.");} | // Comillas
-    <DecCaso: "if"> {System.out.println("Token: DecCaso.");} |
+    <Comilla: "'"> {System.out.println("Token: Comilla.");} | // Comilla
+    <DobleComilla: "\""> {System.out.println("Token: DobleComilla.");} | // Comillas
+    <If: "if"> {System.out.println("Token: If.");} |
     <ComIni: "/*"> {System.out.println("Token: ComIni.");} |
     <ComFin: "*/"> {System.out.println("Token: ComFin.");} |
     <Comentario: "//"> {System.out.println("Token: Comentario.");} |
@@ -87,6 +86,11 @@ TOKEN:
     <Try: "try"> {System.out.println("Token: Try.");} |
     <Catch: "catch"> {System.out.println("Token: Catch.");} |
     <Finally: "finally"> {System.out.println("Token: Finally.");} |
+    <For: "for"> {System.out.println("Token: For.");} |
+    <Foreach: "foreach"> {System.out.println("Token: Foreach.");} |
+    <While: "while"> {System.out.println("Token: While.");} |
+    <Do: "do"> {System.out.println("Token: Do.");} |
+    <Until: "until"> {System.out.println("Token: Until.");} |
     
     <Absoluto: "abs"> {System.out.println("Token: Absoluto.");} |
     <Abstracto: "abstract"> {System.out.println("Token: Abstracto.");} |
@@ -97,6 +101,7 @@ TOKEN:
     <Afirmar: "assert"> {System.out.println("Token: Afirmar.");} |
     <Await: "await"> {System.out.println("Token: Await.");} |
     <Base: "base"> {System.out.println("Token: Base.");} |
+    <Break: "break"> {System.out.println("Token: Break.");} |
     <Call: "call"> {System.out.println("Token: Call.");} |
     <Callable: "callable"> {System.out.println("Token: Callable.");} |
     <Choose: "choose"> {System.out.println("Token: Choose.");} |
@@ -213,11 +218,24 @@ TOKEN:
         Mensaje();
         System.out.println("Token: Identificador (0). Valor del atributo: " + image);*/
     } |
-    <Texto: <Comillas> (<letra> | <dig>)* <Comillas>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
+    <Texto: <DobleComilla> (<letra> | <dig>)* <DobleComilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
+    <Caracter: <Comilla> (<letra> | <dig>) <Comilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Entero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
     <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
 
     <Nada: "">
+}
+
+void Programa():
+{}
+{
+    Importes() Clase()
+}
+
+void Importes():
+{}
+{
+    <Import> <Identificador> (<Punto> <Identificador>)* <PuntoComa>
 }
 
 void Clase():
@@ -277,13 +295,73 @@ void Parametro():
 void CajaInstr():
 {}
 {
-    <ContenedorIzq> (Instruccion())+ <ContenedorDer>
+    <ContenedorIzq> (Instruccion() | TryCatch() | SentenciaIf() | SwitchCase())+ <ContenedorDer>
+}
+
+void TryCatch():
+{}
+{
+    <Try> CajaInstr() (<Catch> Parametro() CajaInstr())+ (<Finally> CajaInstr())?
+}
+
+void SentenciaIf():
+{}
+{
+    <If> Condicion() CajaInstr() (<ElseIf> Condicion() CajaInstr())* (<Default> CajaInstr())?
+}
+
+void SwitchCase():
+{}
+{
+    <Switch> <ParIni> UsoVariableValor() <ParFin> <LlaIni> (<Case> CaseBody())+ (<Default> CaseBody())? <LlaFin>
+}
+
+void CicloWhile():
+{}
+{
+    <While>
+}
+
+void CaseBody():
+{}
+{
+    <Valor> <Gato> Instruccion()* <Break>?
+}
+
+void Condicion():
+{}
+{
+    UsoVariableValor() (<OperadorLog> UsoVariableValor())*
+}
+
+void UsoVariableValor():
+{}
+{
+    <Identificador> PosArr()? LlamadaFun()? | Valor() | AsigCondicional()
+}
+
+void PosArr(): // Posición en arreglo
+{}
+{
+    <CorIni> <Entero> <CorFin>
 }
 
 void Instruccion():
 {}
 {
-    (LlamadaFun() | Retorno() | IncDecVariable() | InstanciaObj() | LlamadaObjeto()) <PuntoComa>
+    (AsignacionValor() | LlamadaFun() | Retorno() | IncDecVariable() | InstanciaObj() | LlamadaPropiedad()) <PuntoComa>
+}
+
+void AsignacionValor():
+{}
+{
+    <Identificador> <Asig> (UsoVariableValor())
+}
+
+void AsigCondicional():
+{}
+{
+    Condicion() <Interrogacion> UsoVariableValor() <Gato> UsoVariableValor()
 }
 
 void LlamadaFun():
@@ -292,10 +370,16 @@ void LlamadaFun():
     <Arroba> <Identificador> (Parametro())? // ¿Función o procedimiento?
 }
 
+void LlamadaPropiedad():
+{}
+{
+    <Identificador> (<Punto> (<Identificador> | LlamadaFun()))*
+}
+
 void Retorno():
 {}
 {
-    <Return> (<Valor> | <Identificador>)
+    <Return> UsoVariableValor()
 }
 
 void IncDecVariable():
@@ -310,12 +394,6 @@ void InstanciaObj():
     <Tilde> <Identificador>{2}
 }
 
-void LlamadaObjeto():
-{}
-{
-    <Identificador> <Punto> LlamadaFun()
-}
-
 void Codigo():
 {
     Token t;
@@ -324,19 +402,6 @@ void Codigo():
 }
 {
     <Clase>
-    /*t = <Identificador> {
-        String palabra = t.image;
-        int c = 0;
-
-        for (; c < tabla.size(); c++)
-            if (palabra.equals(tabla.get(c)))
-                break;
-        
-        if (tabla.size() == c)
-            tabla.add(palabra);
-
-        System.out.println("Identificador (" + Integer.toString(c) + "): " + t.image);
-    }*/
 
     <EOF> {
         if (tabla.size() > 0) {
@@ -348,7 +413,7 @@ void Codigo():
     }
 }
 
-void Iniciar() :
+/*void Iniciar() :
 {
     Token t;
     ArrayList<String> tabla;
@@ -517,8 +582,8 @@ void Iniciar() :
     <Herencia> |
     <Acceso> |
     <IncDec> |
-    <Comillas> |
-    <DobleComillas> |
+    <Comilla> |
+    <DobleComilla> |
     <Booleano> |
     <Nulo> |
     <Split> |
@@ -538,4 +603,4 @@ void Iniciar() :
                 System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
         }
     }
-}
+}*/

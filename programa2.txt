@@ -10,9 +10,18 @@ class Prueba <|
         int [private] Usos : 0;
 
         int Mayor (int x, int y) <|
+            bool Resultado;
+
+            try <|
+                Resultado : (x > y) ? x # y;
+            |>
+            catch (Exception e) <|
+                Console.@print(op.Usos);
+            |>
+
             @IncrementoCont;
-            
-            return (x > y) ? x # y;
+
+            return Resultado;
         |>
 
         void IncrementoCont <|
