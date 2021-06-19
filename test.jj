@@ -105,7 +105,7 @@ TOKEN:
     <Call: "call"> {System.out.println("Token: Call.");} |
     <Callable: "callable"> {System.out.println("Token: Callable.");} |
     <Choose: "choose"> {System.out.println("Token: Choose.");} |
-    <DecClase: "class"> {System.out.println("Token: Class.");} |
+    <DecClase: "class"> {System.out.println("Token: DecClase.");} |
     <DecMain: "main"> {System.out.println("Token: DecMain.");} |
     <Clear: "clear"> {System.out.println("Token: Clear.");} |
     <Clone: "clone"> {System.out.println("Token: Clone.");} |
@@ -115,6 +115,7 @@ TOKEN:
     <Inmutable: "const" | "static"> {System.out.println("Token: Constante.");} |
     <ConstCast: "const_cast"> {System.out.println("Token: ConstCast.");} |
     <Continuar: "continue"> {System.out.println("Token: Continuar.");} |
+    <Date: "Date"> {System.out.println("Token: Date.");} |
     <Dia: "day"> {System.out.println("Token: Dia.");} |
     <Debugger: "debugger"> {System.out.println("Token: Debugger.");} |
     <Declare: "declare"> {System.out.println("Token: Declare.");} |
@@ -188,6 +189,7 @@ TOKEN:
     <Struct: "struct"> {System.out.println("Token: Struct.");} |
     <Super: "super"> {System.out.println("Token: Super.");} |
     <Syncronized: "syncronized"> {System.out.println("Token: Syncronized.");} |
+    <Math: "Math"> {System.out.println("Token: Math.");} |
     <Tab: "tab"> {System.out.println("Token: Tab.");} |
     <Template: "template"> {System.out.println("Token: Template.");} |
     <Then: "then"> {System.out.println("Token: Then.");} |
@@ -212,54 +214,31 @@ TOKEN:
     <With: "with"> {System.out.println("Token: With.");} |
     <Yield: "yield"> {System.out.println("Token: Yield.");} |
     
-    <Identificador: <letra>((<dig>) | (<letra>))*> {
-        /*System.out.println("Token: Identificador. Valor del atributo: " + image);
-        tabla.add(image);
-        Mensaje();
-        System.out.println("Token: Identificador (0). Valor del atributo: " + image);*/
-    } |
+    <Identificador: <letra>((<dig>) | (<letra>))*> |
     <Texto: <DobleComilla> (<letra> | <dig>)* <DobleComilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Caracter: <Comilla> (<letra> | <dig>) <Comilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Entero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
-    <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
+    <Decimal: (<dig>)+"."(<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);}
 
-    <Nada: "">
+    /*<Nada: "">*/
 }
 
 void Programa():
 {}
 {
-    Importes() Clase()
+    (Importes())* MetodoEntrada() (Clase() | Funcion() | Estructura())*
 }
 
-void Importes():
+void Estructura():
 {}
 {
-    <Import> <Identificador> (<Punto> <Identificador>)* <PuntoComa>
+    <Struct> <Identificador> <ContenedorIzq> (Propiedad())+ <ContenedorDer>
 }
 
-void Clase():
+void Funcion():
 {}
 {
-    DecObjeto() <ContenedorIzq> (Propiedad()/* | Clase()*/)+ <ContenedorDer>
-}
-
-void DecObjeto():
-{}
-{
-    (<DecClase> | DecTipoDato() | <Vacio>) (<Acceso>)? <Identificador>
-}
-
-void DecTipoDato():
-{}
-{
-    <TipoDato> (<CorIni> <CorFin>)? // ¿Arreglo?
-}
-
-void Propiedad():
-{}
-{
-    MetodoEntrada() | (DecObjeto() (Variable() | Funcion()))
+    (Parametro())? CajaInstr()
 }
 
 void MetodoEntrada():
@@ -268,40 +247,16 @@ void MetodoEntrada():
     <DecMain> Parametro() CajaInstr()
 }
 
-void Variable():
-{}
-{
-    (<Asig> Valor())? <PuntoComa>
-}
-
-void Valor():
-{}
-{
-    <Texto> | <Entero> | <Decimal> | <Booleano> | <Nulo>
-}
-
-void Funcion():
-{}
-{
-    Parametro() CajaInstr()
-}
-
 void Parametro():
 {}
 {
-    <ParIni> DecTipoDato() <Identificador> (<Coma> DecTipoDato() <Identificador>)* <ParFin>
+    <ParIni> <TipoDato> (<CorIni> <CorFin>)? <Identificador> (<Coma> <TipoDato> <Identificador>)* <ParFin>
 }
 
 void CajaInstr():
 {}
 {
-    <ContenedorIzq> (Instruccion() | TryCatch() | SentenciaIf() | SwitchCase())+ <ContenedorDer>
-}
-
-void TryCatch():
-{}
-{
-    <Try> CajaInstr() (<Catch> Parametro() CajaInstr())+ (<Finally> CajaInstr())?
+    <ContenedorIzq> (Instruccion() | TryCatch() | SentenciaIf() | SwitchCase() | Ciclo())+ <ContenedorDer>
 }
 
 void SentenciaIf():
@@ -313,37 +268,205 @@ void SentenciaIf():
 void SwitchCase():
 {}
 {
-    <Switch> <ParIni> UsoVariableValor() <ParFin> <LlaIni> (<Case> CaseBody())+ (<Default> CaseBody())? <LlaFin>
+    <Switch> <ParIni> UsoVariableValor() <ParFin> <ContenedorIzq> (<Case> CaseBody())+ (<Default> CaseBody())? <ContenedorDer>
 }
 
 void CaseBody():
 {}
 {
-    Valor() <Gato> (Instruccion())* (<Break>)?
+    (Valor())? <Gato> (Instruccion())*
 }
 
-void Ciclo():
+void Instruccion():
 {}
 {
-    CicloFor() | CicloWhile() | CicloDoWhile()
+    (InicioID() | LlamadaFun() | Retorno() | PreIncDecVariable() | InstanciaObj() | DecObjeto_Arreglo() | <Break>) <PuntoComa>
+}
+
+void InicioID():
+{}
+{
+    <Identificador> (AsignacionValor() | PostIncDecVariable() | LlamadaPropiedad())
+}
+
+void AsignacionValor():
+{}
+{
+    <Asig> (UsoVariableValor() | LlamadaFun() | OpAritmetica())
+}
+
+void OpAritmetica():
+{}
+{
+    <Operador> (Valor() | AsigCondicional() | <Identificador>)
+}
+
+void PostIncDecVariable():
+{}
+{
+    <IncDec> (<Entero>)?
+}
+
+void LlamadaPropiedad():
+{}
+{
+    (<Punto> (<Identificador> | LlamadaFun()))*
+}
+
+void PreIncDecVariable():
+{}
+{
+    (<Entero>)? <IncDec> <Identificador>
+}
+
+void InstanciaObj():
+{}
+{
+    <Tilde> <Identificador> <Identificador>
+}
+
+void Retorno():
+{}
+{
+    <Return> UsoVariableValor()
+}
+
+void UsoVariableValor():
+{}
+{
+    <Identificador> (PosArr())? (<Punto> LlamadaFun())? | AsigArreglo() | Valor() | AsigCondicional()
+}
+
+void AsigArreglo():
+{}
+{
+    <LlaIni> Valor() (<Coma> Valor())* <LlaFin>
+}
+
+void PosArr():
+{}
+{
+    <CorIni> <Entero> <CorFin>
+}
+
+void LlamadaFun():
+{}
+{
+    (Librerias())? <Arroba> (<Identificador> | Metodos()) (ParametroEntrada())? 
+}
+
+void Librerias():
+{}
+{
+    (<Math> | <Date>) <Punto>
+}
+
+void Metodos():
+{}
+{
+    <SizeOf> | <Echo> | <Trim> | <Split> | <Isset> | <Clear> | <Absoluto>
+}
+
+void ParametroEntrada():
+{}
+{
+    <ParIni> (Valor() | <TipoDato> | (<Identificador> (PosArr())?)) <ParFin>
+}
+
+void AsigCondicional():
+{}
+{
+    Condicion() <Interrogacion> UsoVariableValor() <Gato> UsoVariableValor()
+}
+
+void TryCatch():
+{}
+{
+    <Try> CajaInstr() (<Catch> Parametro() CajaInstr())+ (<Finally> CajaInstr())?
+}
+
+void Condicion():
+{}
+{
+    <ParIni> UsoVariableValor() (<OperadorLog> UsoVariableValor())* <ParFin>
+}
+
+void Importes():
+{}
+{
+    <Import> <Identificador> (<Punto> (<Math> | <Date>))* <PuntoComa>
+}
+
+void Clase():
+{}
+{
+    <DecClase> (DecAcceso())? <Identificador> <ContenedorIzq> (Propiedad())+ <ContenedorDer>
+}
+
+void Propiedad():
+{}
+{
+    Valor()
+}
+
+void DecObjeto_Arreglo():
+{}
+{
+    <TipoDato> (ContenedorCorIni())? <Identificador>
+}
+
+void ContenedorCorIni():
+{}
+{
+    <CorIni> (DecArreglo() | DecAcceso())
+}
+
+void DecObjValor():
+{}
+{
+    (DecAcceso())? <Identificador>
+}
+
+void DecArreglo():
+{}
+{
+    <CorFin> (DecAcceso())?
+}
+
+void DecAcceso():
+{}
+{
+    <Acceso> <CorFin>
+}
+
+void Valor():
+{}
+{
+    <Texto> | <Caracter> | <Entero> | <Decimal> | <Booleano> | <Nulo>
+}
+
+void Ciclo(): 
+{}
+{
+    CicloFor() | CicloForeach() | CicloWhile() | CicloDoWhile()
 }
 
 void CicloFor():
 {}
 {
-    <For> <ParIni> ForInicializador() <PuntoComa> Condicion() <PuntoComa> ForIncremento() <ParFin> CajaInstr()
+    <For> <ParIni> ForInicializador() <PuntoComa> Condicion() <PuntoComa> (InicioID() | PreIncDecVariable()) <ParFin> CajaInstr()
 }
 
 void ForInicializador():
 {}
 {
-    (DecTipoDato())? AsignacionValor()
+    (DecObjeto_Arreglo())? (AsignacionValor())?
 }
 
 void ForIncremento():
 {}
 {
-    IncDecVariable() | AsignacionValor()
+    PostIncDecVariable() | AsignacionValor()
 }
 
 void CicloForeach():
@@ -367,73 +490,7 @@ void CicloDoWhile():
 void ContWhile():
 {}
 {
-    <While> <ParIni> Condicion() <ParFin>
-}
-
-void Condicion():
-{}
-{
-    UsoVariableValor() (<OperadorLog> UsoVariableValor())*
-}
-
-void UsoVariableValor():
-{}
-{
-    <Identificador> (PosArr())? (LlamadaFun())? | Valor() | AsigCondicional()
-}
-
-void PosArr(): // Posición en arreglo
-{}
-{
-    <CorIni> <Entero> <CorFin>
-}
-
-void Instruccion():
-{}
-{
-    (AsignacionValor() | LlamadaFun() | Retorno() | IncDecVariable() | InstanciaObj() | LlamadaPropiedad()) <PuntoComa>
-}
-
-void AsignacionValor():
-{}
-{
-    <Identificador> <Asig> (UsoVariableValor())
-}
-
-void AsigCondicional():
-{}
-{
-    Condicion() <Interrogacion> UsoVariableValor() <Gato> UsoVariableValor()
-}
-
-void LlamadaFun():
-{}
-{
-    <Arroba> <Identificador> (Parametro())? // ¿Función o procedimiento?
-}
-
-void LlamadaPropiedad():
-{}
-{
-    <Identificador> (<Punto> (<Identificador> | LlamadaFun()))*
-}
-
-void Retorno():
-{}
-{
-    <Return> UsoVariableValor()
-}
-
-void IncDecVariable():
-{}
-{
-    ((<Entero>)? <IncDec> <Identificador>) | (<Identificador> <IncDec> (<Entero>)?)
-}
-
-void InstanciaObj():
-{}
-{
-    <Tilde> <Identificador> <Identificador>
+    <While> Condicion()
 }
 
 void Codigo():
@@ -443,26 +500,8 @@ void Codigo():
     tabla = new ArrayList<String>();
 }
 {
-    Clase()
-
-    <EOF> {
-        if (tabla.size() > 0) {
-            System.out.println("\nLista de identificadores encontrados");
-
-            for (int i = 0; i < tabla.size(); i++)
-                System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
-        }
-    }
-}
-
-/*void Iniciar() :
-{
-    Token t;
-    ArrayList<String> tabla;
-    tabla = new ArrayList<String>();
-}
-{
-    (t = <Identificador> {
+    Programa()
+    /*(t = <Identificador> {
         String palabra = t.image;
         int i = 0;
 
@@ -474,168 +513,7 @@ void Codigo():
             tabla.add(palabra);
 
         System.out.println("Identificador (" + Integer.toString(i) + "): " + t.image);
-    } |
-    <Absoluto> |
-    <Abstracto> |
-    <Activar> |
-    <Alias> |
-    <Ascendiente> |
-    <Ensamblador> |
-    <Afirmar> |
-    <Await> |
-    <Base> |
-    <Call> |
-    <Callable> |
-    <Choose> |
-    <DecClase> |
-    <DecMain> |
-    <Clear> |
-    <Clone> |
-    <Collection> |
-    <Command> |
-    <Compare> |
-    <Inmutable> |
-    <ConstCast> |
-    <ContenedorIzq> |
-    <ContenedorDer> |
-    <Continuar> |
-    <Dia> |
-    <Debugger> |
-    <Declare> |
-    <Defined> |
-    <Del> |
-    <Delete> |
-    <Die> |
-    <Doevents> |
-    <Each> |
-    <Echo> |
-    <Eof> |
-    <Eqv> |
-    <Erase> |
-    <Error> |
-    <Eval> |
-    <Except> |
-    <Exec> |
-    <Exit> |
-    <Explicit> |
-    <Export> |
-    <Extern> |
-    <Fileattr> |
-    <FileCopy> |
-    <Final> |
-    <Fix> |
-    <Fn> |
-    <Format> |
-    <Freefile> |
-    <FriendInLine> |
-    <From> |
-    <Get> |
-    <Global> |
-    <Goto> |
-    <Import> |
-    <In> |
-    <Include_once> |
-    <InstanceOf> |
-    <InsteadOf> |
-    <Interface> |
-    <Is> |
-    <Isset> |
-    <Lambda> |
-    <Let> |
-    <List> |
-    <Match> |
-    <Module> |
-    <Mutable> |
-    <NameSpace> |
-    <Native> |
-    <New> |
-    <Next> |
-    <Operator> |
-    <Package> |
-    <Print> |
-    <Raise> |
-    <Redo> |
-    <Register> |
-    <Reinterpret_cast> |
-    <Require> |
-    <Require_Once> |
-    <Rescue> |
-    <Retry> |
-    <Return> |
-    <Seek> |
-    <Self> |
-    <Set> |
-    <Signed> |
-    <SizeOf> |
-    <Static_Cast> |
-    <Strictfp> |
-    <Struct> |
-    <Super> |
-    <Syncronized> |
-    <Tab> |
-    <Template> |
-    <Then> |
-    <This> |
-    <Throw> |
-    <Throws> |
-    <Tilde> |
-    <Trait> |
-    <Tramsent> |
-    <Transient> |
-    <TypeDef> |
-    <TypeId> |
-    <TypeName> |
-    <TypeOf> |
-    <Undef> |
-    <Union> |
-    <Unsigned> |
-    <Use> |
-    <Using> |
-    <Virtual> |
-    <Vacio> |
-    <Volatile> |
-    <With> |
-    <Yield> |
-    
-    DecTipoDato() |
-    <Asig> |
-    <Arroba> |
-    <Gato> |
-    <Interrogacion> |
-    <Entero> |
-    <PuntoComa> |
-    <Punto> |
-    <Coma> |
-    <OperadorLog> |
-    <Ciclo> |
-    <DecCaso> |
-    <CasoSino> |
-    <Switch> |
-    <Case> |
-    <Default> |
-    <ComIni> |
-    <Operador> |
-    <ParIni> |
-    <ParFin> |
-    <CorIni> |
-    <CorFin> |
-    <LlaIni> |
-    <LlaFin> |
-    <Herencia> |
-    <Acceso> |
-    <IncDec> |
-    <Comilla> |
-    <DobleComilla> |
-    <Booleano> |
-    <Nulo> |
-    <Split> |
-    <Implode> |
-    <FunTri> |
-    <Trim> |
-    <ManArchivo> |
-    <Try> |
-    <Catch> |
-    <Finally>)+
+    }*/
 
     <EOF> {
         if (tabla.size() > 0) {
@@ -645,4 +523,4 @@ void Codigo():
                 System.out.println("Identificador(" + Integer.toString(i) + ") = " + tabla.get(i));
         }
     }
-}*/
+}

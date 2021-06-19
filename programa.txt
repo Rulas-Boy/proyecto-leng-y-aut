@@ -1,12 +1,76 @@
-main(String[] Args) <|
+import java.Math;
+import java.Date;
+
+main(string[] Args) <|
     ~Operaciones op;
+    int contador;
+    int num;
+    float dec;
+    bool NoNulo;
+    string[] caract;
+    string nombre;
+
+    contador : 0;
+    caract : { "a", "b", "c"};
+    nombre : "Panfilodomeo";
+
+    @sizeof(float);
+
+    do <|
+        Console.@echo(contador);
+    |> while (contador < 5);
+
+    while (contador < 10) <|
+        Console.@echo(contador);
+    |>
+
+    for (int c : 0; (c < 10); c++2) <|
+        Console.@echo(c);
+    |>
+
+    nombre : nombre.@Trim;
+    caract : nombre.@Split('o');
+
+    NoNulo : @isset(caract);
+    if (NoNulo) <|
+        Console.@echo("NoNulo");
+    |>
+
+    foreach (string ch in caract) <|
+        Console.@echo(ch);
+    |>
+
+    Console.@clear;
+
+    num : Console.@ReadLine;
+
+    num : Math.@abs(num);
+
+    switch (num) <|
+        case 1#
+            Console.@echo(caract[0]);
+            break;
+        case 2#
+            Console.@echo(caract[1]);
+            break;
+        default#
+            Console.@echo(caract[2]);
+            break;
+    |>
+
+    num : num + 3;
+    if (num == 3) <|
+        Console.@echo("es4");
+    |>
+
+    dec : num * Math.@Sin;
 
     op.@Mayor(5, 3);
-    Console.@print(op.Usos);
+    Console.@echo(op.Numero);
 |>
 
 class [private] Operaciones <|
-    int [private] Usos : 0;
+    int [private] Numero : 0;
 
     int Mayor (int x, int y) <|
         bool Resultado;
@@ -15,7 +79,7 @@ class [private] Operaciones <|
             Resultado : (x > y) ? x # y;
         |>
         catch (Exception e) <|
-            Console.@print(op.Usos);
+            Console.@echo(op.Numero);
         |>
 
         @IncrementoCont;
@@ -24,7 +88,10 @@ class [private] Operaciones <|
     |>
 
     void IncrementoCont <|
-        Usos++2;
-        2++Usos;
+        2++Numero;
     |>
+|>
+
+struct Estructura <|
+    double Precio : 235.23;
 |>
