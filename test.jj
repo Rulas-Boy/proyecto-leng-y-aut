@@ -214,7 +214,7 @@ TOKEN:
     <With: "with"> {System.out.println("Token: With.");} |
     <Yield: "yield"> {System.out.println("Token: Yield.");} |
     
-    <Identificador: <letra>((<dig>) | (<letra>))*> |
+    <Identificador: <letra>((<dig>) | (<letra>))*> {System.out.println("Token: Identificador. Valor del atributo: " + image);} |
     <Texto: <DobleComilla> (<letra> | <dig>)* <DobleComilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Caracter: <Comilla> (<letra> | <dig>) <Comilla>> {System.out.println("Token: Texto. Valor del atributo: " + image);} |
     <Entero: (<dig>)+> {System.out.println("Token: Numero. Valor del atributo: " + image);} |
@@ -292,13 +292,25 @@ void InicioID():
 void AsignacionValor():
 {}
 {
-    <Asig> (UsoVariableValor() | LlamadaFun() | OpAritmetica())
+    <Asig> (UsoVariableValor() | LlamadaFun())
+}
+
+void UsoVariableValor():
+{}
+{
+    <Identificador> (PosArr())? (<Punto> LlamadaFun())? (OpAritmetica())? | AsigArreglo() | Valor() | AsigCondicional()
+}
+
+void LlamadaFun():
+{}
+{
+    (Librerias())? <Arroba> (<Identificador> | Metodos()) (ParametroEntrada())? 
 }
 
 void OpAritmetica():
 {}
 {
-    <Operador> (Valor() | AsigCondicional() | <Identificador>)
+    <Operador> (Valor() | AsigCondicional() | <Identificador> | LlamadaFun())
 }
 
 void PostIncDecVariable():
@@ -331,12 +343,6 @@ void Retorno():
     <Return> UsoVariableValor()
 }
 
-void UsoVariableValor():
-{}
-{
-    <Identificador> (PosArr())? (<Punto> LlamadaFun())? | AsigArreglo() | Valor() | AsigCondicional()
-}
-
 void AsigArreglo():
 {}
 {
@@ -349,12 +355,6 @@ void PosArr():
     <CorIni> <Entero> <CorFin>
 }
 
-void LlamadaFun():
-{}
-{
-    (Librerias())? <Arroba> (<Identificador> | Metodos()) (ParametroEntrada())? 
-}
-
 void Librerias():
 {}
 {
@@ -364,7 +364,7 @@ void Librerias():
 void Metodos():
 {}
 {
-    <SizeOf> | <Echo> | <Trim> | <Split> | <Isset> | <Clear> | <Absoluto>
+    <SizeOf> | <Echo> | <Trim> | <Split> | <Isset> | <Clear> | <Absoluto> | <FunTri>
 }
 
 void ParametroEntrada():
