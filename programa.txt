@@ -93,5 +93,5 @@ class [private] Operaciones <|
 |>
 
 struct Estructura <|
-    double Precio;
+    double Precio : 2599.99;
 |>

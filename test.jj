@@ -250,7 +250,7 @@ void MetodoEntrada():
 void Parametro():
 {}
 {
-    <ParIni> <TipoDato> (<CorIni> <CorFin>)? <Identificador> (<Coma> <TipoDato> <Identificador>)* <ParFin>
+    <ParIni> (<TipoDato> | <Identificador>) (<CorIni> <CorFin>)? <Identificador> (<Coma> <TipoDato> <Identificador>)* <ParFin>
 }
 
 void CajaInstr():
@@ -370,7 +370,13 @@ void Metodos():
 void ParametroEntrada():
 {}
 {
-    <ParIni> (Valor() | <TipoDato> | (<Identificador> (PosArr())?)) <ParFin>
+    <ParIni> ContParametroEntrada() (<Coma> ContParametroEntrada())* <ParFin>
+}
+
+void ContParametroEntrada():
+{}
+{
+    (Valor() | <TipoDato> | (<Identificador> (PosArr())?)) (<Punto> (<Identificador> | LlamadaFun()))*
 }
 
 void AsigCondicional():
@@ -400,19 +406,19 @@ void Importes():
 void Clase():
 {}
 {
-    <DecClase> (DecAcceso())? <Identificador> <ContenedorIzq> (Propiedad())+ <ContenedorDer>
+    <DecClase> (ContenedorCorIni())? <Identificador> <ContenedorIzq> (Propiedad())+ <ContenedorDer>
 }
 
 void Propiedad():
 {}
 {
-    Valor()
+    (DecObjeto_Arreglo() | Funcion() | Estructura())  (<Asig> Valor())? (<PuntoComa>)?
 }
 
 void DecObjeto_Arreglo():
 {}
 {
-    <TipoDato> (ContenedorCorIni())? <Identificador>
+    (<TipoDato> | <Vacio>) (ContenedorCorIni())? <Identificador>
 }
 
 void ContenedorCorIni():
